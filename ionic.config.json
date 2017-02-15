@@ -2,5 +2,11 @@
   "name": "myApp",
   "app_id": "",
   "v2": true,
-  "typescript": true
+  "typescript": true,
+    "proxies": [
+    {
+      "path": "/event2",
+      "proxyUrl": "https://jayorla.xyz"
+    }
+  ]
 }

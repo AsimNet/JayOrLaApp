@@ -3,10 +3,10 @@ import { Http } from '@angular/http';
 import { Api } from './api';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/toPromise';
-import { Event } from '../models/event'
+import { Event, EventInterface } from '../models/event'
 
 @Injectable()
-export class User {
+export class Events {
   _user: any;
 
   constructor(public http: Http, public api: Api) {
@@ -35,6 +35,31 @@ export class User {
         }
       }, err => {
         console.error('ERROR', err);
+      });
+
+    return seq;
+  }
+
+
+  /**
+   * GET request to our event endpoint with the hash
+   * that we pbtained when the user select an event from the list on the first page.
+   */
+  getEvent(hash: string) {
+    let seq = this.api.get('event2/'+hash).share();
+console.log(seq);
+    seq
+      .map(res => res.json())
+      .subscribe(res => {
+        // If the API returned a successful response, mark the user as logged in
+
+console.log(JSON.stringify(res));
+    console.log(res["name"])
+        if(res.status == 'success') {
+          this._loggedIn(res);
+        }
+      }, err => {
+        console.error('ERROR: ', err);
       });
 
     return seq;

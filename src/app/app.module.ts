@@ -13,6 +13,7 @@ import { HomePage } from '../pages/home/home';
 
 import { User } from '../providers/user';
 import { Api } from '../providers/api';
+import { Events } from '../providers/events';
 
 
 import { TranslateModule, TranslateLoader, TranslateStaticLoader } from 'ng2-translate/ng2-translate';
@@ -50,6 +51,7 @@ export function providers() {
   return [
     Storage,
 
+    Events,
     User,
     Api,
 

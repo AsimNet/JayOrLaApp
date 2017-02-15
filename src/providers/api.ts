@@ -13,11 +13,9 @@ export class Api {
 
 
 
-get(endpoint: string, params?: any) {
-       let headers = new Headers({ 'Content-Type': 'application/json' });
-      let options = new RequestOptions({ headers: headers });
+get(endpoint: string) {
+      let options = new RequestOptions();
 
-      
     return this.http.get(this.url + '/' + endpoint, options);
   }
 
