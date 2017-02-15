@@ -5,16 +5,17 @@ export interface EventInterface{
                user_id: number,
                end_date: string,
                notes: string,
-               hash?: string,
-               created_at?:string,
-               updated_at?:string,
-               id?: number
+
 }
 export class Event implements EventInterface{
   constructor( public name: string,
                public user_id: number,
                public end_date: string,
-               public notes: string) {
+               public notes: string,
+               public hash?: string,
+               public created_at?:string,
+               public updated_at?:string,
+               public id?: number) {
 
 
               }
@@ -36,11 +37,11 @@ get getEndDate(): string{
 get getNotes(): string{
     return this.name;
 }
-// get getHash(): string{
-//     return this.hash;
-// }
+get getHash(): string{
+    return this.hash;
+}
 
-// get getEventId(): number{
-//     return this.id;
-// }
+get getEventId(): number{
+    return this.id;
+}
 }

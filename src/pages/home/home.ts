@@ -11,6 +11,7 @@ export class HomePage {
   constructor(public navCtrl: NavController, public events : Events) {
     this.events.getEvent("0de71b6").subscribe((Data)=>{
       console.log(Data.status +" "+ Data.json());
+
     })
     for(let i =0;i<43;i++){
 let event = new Event("HI"+i+200,2,"32323232323","Hello");
