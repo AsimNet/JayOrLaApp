@@ -8,7 +8,6 @@ import { FirstRunPage } from '../pages/pages';
 import { LoginPage } from '../pages/login/login';
 import { TabsPage } from '../pages/tabs/tabs';
 import { TutorialPage } from '../pages/tutorial/tutorial';
-import { WelcomePage } from '../pages/welcome/welcome';
 
 
 import { TranslateService } from 'ng2-translate/ng2-translate';
@@ -39,7 +38,6 @@ export class MyApp {
 
   pages: any[] = [
     { title: 'Tutorial', component: TutorialPage },
-    { title: 'Welcome', component: WelcomePage },
     { title: 'Tabs', component: TabsPage }
   ]
 

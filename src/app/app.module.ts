@@ -8,7 +8,6 @@ import { MyApp } from './app.component';
 import { LoginPage } from '../pages/login/login';
 import { TabsPage } from '../pages/tabs/tabs';
 import { TutorialPage } from '../pages/tutorial/tutorial';
-import { WelcomePage } from '../pages/welcome/welcome';
 import { HomePage } from '../pages/home/home';
 
 import { User } from '../providers/user';
@@ -35,7 +34,6 @@ let pages = [
   LoginPage,
   TabsPage,
   TutorialPage,
-  WelcomePage,
   HomePage
 ];
 

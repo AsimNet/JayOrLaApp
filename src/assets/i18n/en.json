@@ -15,18 +15,15 @@
   "MAP_TITLE": "Map",
 
   "TUTORIAL_SKIP_BUTTON" : "Skip",
-  "TUTORIAL_CONTINUE_BUTTON" : "Continue",
+  "TUTORIAL_CONTINUE_BUTTON" : "I'm ready",
 
-  "TUTORIAL_SLIDE1_TITLE": "Welcome to the Ionic Super Starter",
-  "TUTORIAL_SLIDE1_DESCRIPTION": "The <b>Ionic Super Starter</b> is a fully-featured Ionic starter with many pre-built pages and best practices.",
+  "TUTORIAL_SLIDE1_TITLE": "Welcome to the Jay Or LA App",
+  "TUTORIAL_SLIDE1_DESCRIPTION": "The <b>Jay Or La App</b> is an attender app, which will make you organize your events easily",
 
-  "TUTORIAL_SLIDE2_TITLE": "How to use the Super Starter",
-  "TUTORIAL_SLIDE2_DESCRIPTION": "Assemble the various page types you want and remove the ones you don't. We've provided many common mobile app page layouts, like login and signup pages, tabs, and this tutorial page.",
+  "TUTORIAL_SLIDE2_TITLE": "How to use the JayOrLa",
+  "TUTORIAL_SLIDE2_DESCRIPTION": "Enter event's name, date, and some notes. Then share the unique link you get with your friends.",
 
-  "TUTORIAL_SLIDE3_TITLE": "Getting Started",
-  "TUTORIAL_SLIDE3_DESCRIPTION": "Need help? Check out the Super Starter README for a full tutorial",
-
-  "TUTORIAL_SLIDE4_TITLE": "Ready to Play?",
+  "TUTORIAL_SLIDE4_TITLE": "Ready to Plan?😁",
 
   "WELCOME_INTRO" : "The starting point for your next great Ionic app",
 
