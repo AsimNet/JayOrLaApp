@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 
 import { MenuController, NavController } from 'ionic-angular';
 
-import { LoginPage } from '../login/login';
+import { SignupPage } from '../signup/signup';
 
 import { TranslateService } from 'ng2-translate/ng2-translate';
 
@@ -46,7 +46,7 @@ export class TutorialPage {
   }
 
   startApp() {
-    this.navCtrl.setRoot(LoginPage, {}, {
+    this.navCtrl.setRoot(SignupPage, {}, {
       animate: true,
       direction: 'forward'
     });
