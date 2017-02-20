@@ -9,6 +9,7 @@ import { SignupPage } from '../pages/signup/signup';
 import { TabsPage } from '../pages/tabs/tabs';
 import { TutorialPage } from '../pages/tutorial/tutorial';
 import { HomePage } from '../pages/home/home';
+import { AddNewEventPage } from '../pages/add-new-event/add-new-event';
 
 import { User } from '../providers/user';
 import { Api } from '../providers/api';
@@ -34,7 +35,8 @@ let pages = [
   SignupPage,
   TabsPage,
   TutorialPage,
-  HomePage
+  HomePage,
+  AddNewEventPage
 ];
 
 export function declarations() {

@@ -1,10 +1,15 @@
 <ion-header>
   <ion-navbar color="light">
     <ion-title>JayOrLa</ion-title>
+  <ion-buttons end>
+      <button ion-button icon-only (click)="addNewEvent()">
+        <ion-icon name="add"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 
-<ion-content>
+<ion-content no-bounce>
  <ion-list no-lines>
   <ion-item-sliding *ngFor="let event of HU">
     <ion-item color="primary">
