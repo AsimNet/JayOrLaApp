@@ -3,9 +3,10 @@ import { NavController, ToastController, LoadingController } from 'ionic-angular
 
 import { TranslateService } from 'ng2-translate/ng2-translate';
 import { Network } from 'ionic-native'
-import { MainPage } from '../../pages/pages';
+import { TabsPage } from '../tabs/tabs';
 import { User } from '../../providers/user';
 import { Storage } from '@ionic/storage'
+import { Response} from '@angular/http';
 
 @Component({
   selector: 'page-signup',
@@ -46,16 +47,17 @@ export class SignupPage {
 
     if (Network.type !== 'none') {
       let accountJsoned = JSON.stringify(this.account);
-      console.log(accountJsoned);
-      this.user.signup(accountJsoned).subscribe((resp) => {
-        let results = JSON.stringify(resp)["_body"];
+    //  console.log(accountJsoned);
+      this.user.signup(accountJsoned).subscribe((resp:Response) => {
+        
+let results = resp.json();
 
         if (resp.status == 200) {
           loader.dismiss();
 
           this.storage.set(SignupPage.ACCOUNT_KEY, results).then(() => {
             console.log("resp status: " + results);
-            this.navCtrl.setRoot(MainPage, {}, {
+            this.navCtrl.setRoot(TabsPage, {}, {
               animate: true,
               direction: 'forward'
             });

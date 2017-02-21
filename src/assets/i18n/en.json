@@ -11,6 +11,7 @@
   "TAB1_TITLE": "Items",
   "TAB2_TITLE": "Search",
   "TAB3_TITLE": "Settings",
+  "ADD":"Add",
 
   "NO_NETWORK": "Please check your internet connection!",
 
@@ -62,7 +63,11 @@
   "CANCEL_BUTTON" : "Cancel",
   "DELETE_BUTTON" : "Delete",
 
-  "CARDS_TITLE": "Social",
+  "ADD_NEW_EVENT_TITLE": "Add Event",
+  "EVENTS_NAME": "Event's name",
+  "DAY": "Day",
+  "TIME": "Time",
+  "NOTES": "Notes",
 
   "SEARCH_TITLE": "Search",
   "SEARCH_PLACEHOLDER" : "Search the items list, e.g. \"Donald Duck\""

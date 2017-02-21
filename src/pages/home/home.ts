@@ -27,10 +27,7 @@ export class HomePage {
 
 
   addNewEvent() {
-    let addEventPage = this.modalCtrl.create(AddNewEventPage,{},{
-      enableBackdropDismiss: true,
-      showBackdrop: true
-    });
+    let addEventPage = this.modalCtrl.create(AddNewEventPage);
     addEventPage.present();
   }
 }

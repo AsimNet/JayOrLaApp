@@ -19,19 +19,6 @@ export class User {
   signup(accountInfo: any) {
     let seq = this.api.post('register', accountInfo).share();
 
-    seq
-      .map(res => res.json())
-      .subscribe(res => {
-        // If the API returned a successful response, mark the user as logged in
-                  console.log("signup resp: "+JSON.stringify(res));
-
-        if(res.status == 'success') {
-          this._loggedIn(res);
-        }
-      }, err => {
-        console.error('ERROR', err);
-      });
-
     return seq;
   }
 

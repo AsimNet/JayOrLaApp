@@ -5,7 +5,7 @@
   "typescript": true,
     "proxies": [
     {
-      "path": "/event2",
+      "path": "*",
       "proxyUrl": "https://jayorla.xyz"
     }
   ]

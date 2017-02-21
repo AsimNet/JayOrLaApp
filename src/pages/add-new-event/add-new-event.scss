@@ -1,3 +1,13 @@
 page-add-new-event {
-
+.datetime-text:empty:not(:focus):before{
+	content: '###';
+    color: #999;
+}
+img{
+        display: block;
+        width: auto;
+        height: 145px;
+        margin-left: auto;
+        margin-right: auto;
+         }
 }

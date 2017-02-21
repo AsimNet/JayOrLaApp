@@ -8,7 +8,8 @@
   "TAB1_TITLE": "عناصر",
   "TAB2_TITLE": "بحث",
   "TAB3_TITLE": "إعدادات",
-
+  "ADD":"أضف",
+  
   "NO_NETWORK": "تحقق من اتصالك بالانترنت رجاء!",
 
 
@@ -45,13 +46,9 @@
   "YOUR_NAME": "أدخل اسما تعرف به!",
   "FILL_REQUIRED": "رجاء قم بتعبئة جميع الحقول، على الأقل ٣ حروف!",
 
-
-  "LIST_MASTER_TITLE": "عناصر",
-
-  "ITEM_CREATE_TITLE": "عنصر جديد",
-  "ITEM_CREATE_CHOOSE_IMAGE": "إضافة صورة",
-
-  "CARDS_TITLE": "اجتماعي",
-
-  "SEARCH_TITLE": "بحث"
+  "ADD_NEW_EVENT_TITLE": "إضافة مناسبة",
+  "EVENTS_NAME": "اسم المناسبة",
+  "DAY": "اليوم",
+  "TIME": "الساعة",
+  "NOTES": "ملاحظات"
 }

@@ -6,13 +6,40 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>addNewEvent</ion-title>
+  <ion-navbar color="light">
+    <ion-title>{{'ADD_NEW_EVENT_TITLE'| translate}}</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="addNewEvent()" type="submit">
+        <ion-icon name="add"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 
 </ion-header>
 
 
-<ion-content padding>
+<ion-content no-bounce>
+  <img src="assets/img/ica-slidebox-img-3.png">
+  <ion-list no-bounce>
+    <form (ng-submit)="AddNewEvent()">
+      <ion-item>
+        <ion-label floating>{{'EVENTS_NAME'| translate}}</ion-label>
+        <ion-input type="text" name="title" required></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>{{'DAY'| translate}}: </ion-label>
+        <ion-datetime displayFormat="MMM DD YYYY" [(ngModel)]="day" name="day" min="2017" required></ion-datetime>
+      </ion-item>
+      <ion-item>
+        <ion-label>{{'TIME' | translate}}: </ion-label>
+        <ion-datetime displayFormat="h:mm A" [(ngModel)]="time" name="time" required></ion-datetime>
+      </ion-item>
+      <ion-item>
+        <ion-label floating>{{'NOTES'}}</ion-label>
+        <ion-textarea rows="10" [(ngModel)]="notes" name="notes"></ion-textarea>
+      </ion-item>
+    </form>
+  </ion-list>
+
 
 </ion-content>
