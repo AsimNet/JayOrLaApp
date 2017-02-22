@@ -26,7 +26,8 @@ export class MyApp {
   constructor(translate: TranslateService, 
               platform: Platform, 
               config: Config,
-              public storage: Storage) {
+              public storage: Storage,
+              public database: Database) {
     // Set the default language for translation strings, and the current language.
     translate.setDefaultLang('en');
     translate.use('en')
@@ -40,6 +41,7 @@ export class MyApp {
       // Here you can do any higher level native things you might need.
       StatusBar.styleDefault();
       Splashscreen.hide();
+      this.createDB();
 
       this.storage.get(SignupPage.ACCOUNT_KEY).then((user) => {
         if(!user){
@@ -57,5 +59,13 @@ export class MyApp {
     // Reset the content nav to have just this page
     // we wouldn't want the back button to show in this scenario
     this.nav.setRoot(page.component);
+  }
+
+   private createDB(): void {
+
+    this.database.db.openDatabase(Database.DB_LOCATION).then(Database.create)
+      .catch((err) => {
+        console.error('Unable to crate database @MyApp.createDb: ', err);
+      });
   }
 }
