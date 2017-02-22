@@ -23,18 +23,30 @@ export class HomePage {
 
   }
 
-  ionViewDidEnter() {
-    this.platform.ready().then(() => {
+ionViewWillLeave(){
+  this.eventsList = [];
+}
+
+loadEventsList(){
+   this.platform.ready().then(() => {
 
       this.database.getEvents().then((results) => {
+        
         this.eventsList = results;
       })
     })
+}
+  ionViewWillEnter() {
+   this.loadEventsList()
   }
 
   addNewEvent() {
     let addEventPage = this.modalCtrl.create(AddNewEventPage);
+    addEventPage.onWillDismiss(()=>{
+   this.loadEventsList()
+    })
     addEventPage.present();
+
   }
 
   open(event: Event) {

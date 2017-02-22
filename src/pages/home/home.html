@@ -10,6 +10,8 @@
 </ion-header>
 
 <ion-content no-bounce>
+<div *ngIf="eventsList.length == 0" id='logo' style='background:url("https://api.adorable.io/avatars/1000/anga.png")'></div>
+  <!--<img *ngIf="eventsList.length == 0" src="https://api.adorable.io/avatars/1000/anga.png" >-->
  <ion-list no-lines>
   <ion-item-sliding *ngFor="let event of eventsList">
     <ion-item color="primary" (click)="open(event)">

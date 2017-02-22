@@ -45,6 +45,7 @@ export class Database {
     return Database.db.openDatabase(Database.DB_LOCATION).then(() => {
       return Database.db.executeSql(`SELECT *
       FROM event
+      Order by EventId DESC
 `, []);
     }).then((data) => {
 
