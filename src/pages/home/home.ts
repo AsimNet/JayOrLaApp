@@ -3,6 +3,8 @@ import { Event } from '../../models/event';
 import { NavController, ModalController } from 'ionic-angular';
 import { Events } from '../../providers/events';
 import { AddNewEventPage } from '../add-new-event/add-new-event';
+import { Database } from '../../providers/database';
+import { TranslateService } from 'ng2-translate/ng2-translate';
 
 
 @Component({
@@ -10,19 +12,21 @@ import { AddNewEventPage } from '../add-new-event/add-new-event';
   templateUrl: 'home.html'
 })
 export class HomePage {
-  HU: Event[] = [];
+  eventsList: Event[] = [];
 
   constructor(public navCtrl: NavController,
     public modalCtrl: ModalController,
-    public events: Events) {
+    public events: Events,
+    public translate: TranslateService,
+    public database: Database) {
     this.events.getEvent("0de71b6").subscribe((Data) => {
       console.log(Data.status + " " + Data.json());
 
     })
-    for (let i = 0; i < 43; i++) {
-      let event = new Event("HI" + i + 200, 2, "32323232323", "Hello");
-      this.HU.push(event);
-    }
+
+    this.database.getEvents().then((results) => {
+      this.eventsList = results;
+    })
   }
 
 

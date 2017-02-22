@@ -44,6 +44,7 @@ export class MyApp {
       this.createDB();
 
       this.storage.get(SignupPage.ACCOUNT_KEY).then((user) => {
+        console.log("USER REGISTERATION STATUS: "+ user);
         if(!user){
           //show him tutorial..
           this.rootPage = TutorialPage;
@@ -63,7 +64,7 @@ export class MyApp {
 
    private createDB(): void {
 
-    this.database.db.openDatabase(Database.DB_LOCATION).then(Database.create)
+    Database.db.openDatabase(Database.DB_LOCATION).then(Database.create)
       .catch((err) => {
         console.error('Unable to crate database @MyApp.createDb: ', err);
       });

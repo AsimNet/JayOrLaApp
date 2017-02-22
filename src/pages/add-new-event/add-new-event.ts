@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, ToastController, LoadingController } from 'ionic-angular';
+import { NavController, NavParams, ToastController, LoadingController, ViewController } from 'ionic-angular';
 import { TranslateService } from 'ng2-translate/ng2-translate';
 import { Events } from '../../providers/events';
 import { Event } from '../../models/event';
@@ -46,6 +46,7 @@ export class AddNewEventPage {
     public toastCtrl: ToastController,
     public storage: Storage,
     public loadingCtrl: LoadingController,
+    public viewCtrl: ViewController,
     public database: Database) {
     this.translate.get('ADD_EVENT_ERROR').subscribe((value) => {
       this.addEventError = value;
@@ -88,7 +89,17 @@ export class AddNewEventPage {
               event.created_at = results.created_at;
               event.updated_at = results.updated_at;
        
-              this.database.addToDB(event);
+              this.database.addToDB(event).then(()=>{
+                //dismiss the view!
+                this.viewCtrl.dismiss();
+              }).catch(()=>{
+                 let toast = this.toastCtrl.create({
+                message: "ERROR: SQL",
+                duration: 4500,
+                position: 'top'
+              });
+              toast.present();
+              });
 
             } else {
               loader.dismiss();
