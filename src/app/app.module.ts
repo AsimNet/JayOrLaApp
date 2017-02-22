@@ -14,6 +14,7 @@ import { AddNewEventPage } from '../pages/add-new-event/add-new-event';
 import { User } from '../providers/user';
 import { Api } from '../providers/api';
 import { Events } from '../providers/events';
+import { Database } from "../providers/database";
 
 
 import { TranslateModule, TranslateLoader, TranslateStaticLoader } from 'ng2-translate/ng2-translate';
@@ -54,7 +55,7 @@ export function providers() {
     Events,
     User,
     Api,
-
+    Database,
     // Keep this to enable Ionic's runtime error handling during development
     { provide: ErrorHandler, useClass: IonicErrorHandler }
   ];

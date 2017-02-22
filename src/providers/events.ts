@@ -4,7 +4,7 @@ import { Api } from './api';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/toPromise';
 import { Event } from '../models/event'
-import {User} from '../models/user';
+import { User } from '../models/user';
 
 @Injectable()
 export class Events {
@@ -25,7 +25,13 @@ export class Events {
    * the user entered on the form.
    */
   addEvent(event: Event) {
-    let seq = this.api.post('event', event).share();
+    let enhancedEventObj = {
+      event: event.getName,
+      user_id: event.getUser_id,
+      end_date: event.getEndDate,
+      notes:event.getNotes
+    }
+    let seq = this.api.post('event', enhancedEventObj).share();
 
     seq
       .map(res => res.json())
@@ -66,18 +72,18 @@ export class Events {
     return seq;
   }
 
-participate(user: User, eventId: number){
-  let seq = this.api.post('participate', {
-    name: user.getName,
-    is_coming: user.isComing,
-    event_id: eventId
-  }).share();
+  participate(user: User, eventId: number) {
+    let seq = this.api.post('participate', {
+      name: user.getName,
+      is_coming: user.isComing,
+      event_id: eventId
+    }).share();
 
     seq
       .map(res => res.json())
       .subscribe(res => {
         // If the API returned a successful response, mark the user as logged in
-        if(res.status == 'success') {
+        if (res.status == 'success') {
 
         }
       }, err => {
@@ -85,7 +91,7 @@ participate(user: User, eventId: number){
       });
 
     return seq;
-}
+  }
 
   getAllParticipantToEvent(event: Event) {
     let seq = this.api.get('event/' + event.getEventId).share();

@@ -1,10 +1,14 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, ToastController, LoadingController } from 'ionic-angular';
 import { TranslateService } from 'ng2-translate/ng2-translate';
 import { Events } from '../../providers/events';
 import { Event } from '../../models/event';
 import { Storage } from '@ionic/storage';
 import { SignupPage } from '../signup/signup';
+import * as moment from 'moment';
+import { Response } from '@angular/http';
+import { Network } from 'ionic-native'
+import { Database } from "../../providers/database";
 
 /*
   Generated class for the AddNewEvent page.
@@ -30,29 +34,100 @@ export class AddNewEventPage {
   day;
   time;
   notes;
+  dateTime;
+  title;
+
+  private addEventError: string;
+
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
     public translate: TranslateService,
     public events: Events,
-    public storage: Storage) { }
-var moment = require('moment');
+    public toastCtrl: ToastController,
+    public storage: Storage,
+    public loadingCtrl: LoadingController,
+    public database: Database) {
+    this.translate.get('ADD_EVENT_ERROR').subscribe((value) => {
+      this.addEventError = value;
+    })
+  }
+
   ionViewDidLoad() {
     console.log('ionViewDidLoad AddNewEventPage');
   }
 
+  storeDate() {
+    if (this.day && this.time) {
+      this.dateTime = moment(this.day + " " + this.time + " " + moment().format('Z'), "YYYY-MM-DD HH:mm Z");
 
+    }
+
+  }
   addNewEvent() {
-    var userId = "0";
-    this.storage.get(SignupPage.ACCOUNT_KEY).then((user) => {
-      userId = user.id;
-      console.log(this.day);
-      console.log("userId: " + userId + ", day: " + this.day + ", time: " + this.time);
-    });
-    let dateTime = new Date();
-    dateTime.setHours(this.time);
-    dateTime.setDate(this.day);
-    
-    console.log(dateTime);
-    //this.events.addEvent(new Event(event.name, userId,event.))
+    if (this.day && this.time && this.title) {
+      let loader = this.loadingCtrl.create({
+        content: this.translate.instant("ADDING_EVENT"),
+      });
+      loader.present();
+      if (Network.type !== 'none') {
+
+        this.storage.get(SignupPage.ACCOUNT_KEY).then((user) => {
+          let end_time = this.dateTime.format('X');
+          let event = new Event(this.title, Number(user.id), end_time, this.notes);
+          this.events.addEvent(event).subscribe((resp: Response) => {
+            //event created successfully
+            loader.dismiss();
+            if (resp.status == 200) {
+            
+              let results = resp.json();
+           
+              console.log("results: " + results);
+            
+              event.hash = results.hash;
+              event.id = results.id;
+              event.created_at = results.created_at;
+              event.updated_at = results.updated_at;
+       
+              this.database.addToDB(event);
+
+            } else {
+              loader.dismiss();
+              let toast = this.toastCtrl.create({
+                message: resp.status + " " + this.addEventError,
+                duration: 4500,
+                position: 'top'
+              });
+              toast.present();
+            }
+
+
+          }, (err) => {
+            // error
+            loader.dismiss();
+            let toast = this.toastCtrl.create({
+              message: this.addEventError,
+              duration: 4500,
+              position: 'top'
+            });
+            toast.present();
+
+          });
+          //  console.log("userId: " + userId + ", day: " + this.day + ", time: " + this.time + " zone: " + moment().format("Z"));
+        });
+
+      } else {
+
+      }
+    } else {
+
+      let toast = this.toastCtrl.create({
+        message: this.translate.instant("ALL_FIELDS_REQUIRED"),
+        duration: 3000,
+        position: 'top'
+      });
+      toast.present();
+
+    }
+
   }
 }

@@ -79,7 +79,7 @@ let results = resp.json();
         console.error("doLogin error: " + err);
         //     // Unable to log in
         let toast = this.toastCtrl.create({
-          message: this.loginErrorString,
+          message: err.status + " " +this.loginErrorString,
           duration: 3000,
           position: 'top'
         });

@@ -12,6 +12,7 @@
   "TAB2_TITLE": "Search",
   "TAB3_TITLE": "Settings",
   "ADD":"Add",
+  "ALL_FIELDS_REQUIRED": "Please fill all required Fields",
 
   "NO_NETWORK": "Please check your internet connection!",
 
@@ -20,7 +21,7 @@
   "TUTORIAL_SKIP_BUTTON" : "Skip",
   "TUTORIAL_CONTINUE_BUTTON" : "I'm ready",
 
-  "TUTORIAL_SLIDE1_TITLE": "Welcome to the Jay Or LA App",
+  "TUTORIAL_SLIDE1_TITLE": "Welcome to the Jay Or La App",
   "TUTORIAL_SLIDE1_DESCRIPTION": "The <b>Jay Or La App</b> is an attender app, which will make you organize your events easily",
 
   "TUTORIAL_SLIDE2_TITLE": "How to use the JayOrLa",
@@ -68,6 +69,9 @@
   "DAY": "Day",
   "TIME": "Time",
   "NOTES": "Notes",
+  "NOTICE_ADD_EVENT": "*Users won't be able to confirm their attendes after",
+  "ADD_EVENT_ERROR": "Unable to add the event. Please try again later.",
+  "ADDING_EVENT": "Adding the event..",
 
   "SEARCH_TITLE": "Search",
   "SEARCH_PLACEHOLDER" : "Search the items list, e.g. \"Donald Duck\""

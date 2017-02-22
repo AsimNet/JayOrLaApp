@@ -2,37 +2,19 @@ import { Component, ViewChild } from '@angular/core';
 import {Platform, Nav, Config} from 'ionic-angular';
 import { StatusBar, Splashscreen } from 'ionic-native';
 
-import { Settings } from '../providers/providers';
-
-import { FirstRunPage } from '../pages/pages';
 import { SignupPage } from '../pages/signup/signup';
 import { TabsPage } from '../pages/tabs/tabs';
 import { TutorialPage } from '../pages/tutorial/tutorial';
-
+import {Storage} from '@ionic/storage';
 
 import { TranslateService } from 'ng2-translate/ng2-translate';
+import { Database } from "../providers/database";
 
 @Component({
-  template: `<ion-menu [content]="content">
-    <ion-header>
-      <ion-toolbar>
-        <ion-title>Pages</ion-title>
-      </ion-toolbar>
-    </ion-header>
-
-    <ion-content>
-      <ion-list>
-        <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
-          {{p.title}}
-        </button>
-      </ion-list>
-    </ion-content>
-
-  </ion-menu>
-  <ion-nav #content [root]="rootPage"></ion-nav>`
+  template: `<ion-nav #content [root]="rootPage"></ion-nav>`
 })
 export class MyApp {
-  rootPage = TabsPage;
+  rootPage;
 
   @ViewChild(Nav) nav: Nav;
 
@@ -41,7 +23,10 @@ export class MyApp {
     { title: 'Tabs', component: TabsPage }
   ]
 
-  constructor(translate: TranslateService, platform: Platform, config: Config) {
+  constructor(translate: TranslateService, 
+              platform: Platform, 
+              config: Config,
+              public storage: Storage) {
     // Set the default language for translation strings, and the current language.
     translate.setDefaultLang('en');
     translate.use('en')
@@ -55,6 +40,16 @@ export class MyApp {
       // Here you can do any higher level native things you might need.
       StatusBar.styleDefault();
       Splashscreen.hide();
+
+      this.storage.get(SignupPage.ACCOUNT_KEY).then((user) => {
+        if(!user){
+          //show him tutorial..
+          this.rootPage = TutorialPage;
+        }else{
+          //show him main page
+          this.rootPage = TabsPage;
+        }
+      });
     });
   }
 

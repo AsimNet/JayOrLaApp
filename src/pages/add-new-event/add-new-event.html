@@ -20,19 +20,22 @@
 
 <ion-content no-bounce>
   <img src="assets/img/ica-slidebox-img-3.png">
-  <ion-list no-bounce>
+  <ion-list no-lines>
     <form (ng-submit)="AddNewEvent()">
       <ion-item>
-        <ion-label floating>{{'EVENTS_NAME'| translate}}</ion-label>
-        <ion-input type="text" name="title" required></ion-input>
+        <ion-label floating>*{{'EVENTS_NAME'| translate}}</ion-label>
+        <ion-input type="text" name="title" [(ngModel)]="title" required></ion-input>
       </ion-item>
       <ion-item>
-        <ion-label>{{'DAY'| translate}}: </ion-label>
-        <ion-datetime displayFormat="MMM DD YYYY" [(ngModel)]="day" name="day" min="2017" required></ion-datetime>
+        <ion-label>*{{'DAY'| translate}}: </ion-label>
+        <ion-datetime pickerFormat="YYYY-MM-DD" displayFormat="MMM DD YYYY" [(ngModel)]="day" name="day" min="2017" (ionChange)="storeDate()" required></ion-datetime>
       </ion-item>
       <ion-item>
-        <ion-label>{{'TIME' | translate}}: </ion-label>
-        <ion-datetime displayFormat="h:mm A" [(ngModel)]="time" name="time" required></ion-datetime>
+        <ion-label>*{{'TIME' | translate}}: </ion-label>
+        <ion-datetime displayFormat="h:mm A" [(ngModel)]="time" name="time" (ionChange)="storeDate()" required></ion-datetime>
+      </ion-item>
+      <ion-item  *ngIf="dateTime !== undefined" text-wrap>
+    <h6  ion-text color="notes">{{'NOTICE_ADD_EVENT' | translate}}:<span text-wrap ion-text color="danger"> {{dateTime.format("MMMM Do YYYY, h:mm A")}}</span></h6>
       </ion-item>
       <ion-item>
         <ion-label floating>{{'NOTES'}}</ion-label>
