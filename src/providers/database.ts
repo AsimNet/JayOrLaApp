@@ -20,7 +20,7 @@ export class Database {
       Database.db.transaction(function (tx) {
 
         tx.executeSql(`INSERT INTO event (Name, UserId, EndDate, Notes, Hash, CreatedAt, UpdatedAt, EventId) VALUES (?,?,?,?,?,?,?,?)`, [model.getName, model.getUser_id, model.getEndDate, model.getNotes, model.getHash, model.created_at, model.updated_at, model.id], function (tx, results) {
-          console.log("Last event inserted ID: " + Number(results.insertId));
+          console.log("Last event inserted ID: " + Number(model.getEventId));
           resolve(results);
 
         });
@@ -56,7 +56,7 @@ export class Database {
           let item = data.rows.item(i);
           console.log("Got SQL Results@getEvents: " + data.rows.item(i).Name);
 
-          let event: Event = new Event(item.Name, item.UserId, item.EndDate, item.Notes, item.Hash, item.CreatedAt, item.UpdatedAt, item.id);
+          let event: Event = new Event(item.Name, item.UserId, item.EndDate, item.Notes, item.Hash, item.CreatedAt, item.UpdatedAt, item.EventId);
           result.push(
             event
           )
@@ -109,8 +109,6 @@ export class Database {
     console.log(" event == : " + JSON.stringify(event));
 
     return Database.db.openDatabase(Database.DB_LOCATION).then(() => {
-
-    }).then(() => {
       return Database.db.executeSql(`
             DELETE 
             FROM Event
