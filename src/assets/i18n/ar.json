@@ -13,9 +13,11 @@
   "ALL_FIELDS_REQUIRED": "قم بتعبئة جميع الحقول المطلوبة رجاء",
   "BACK_BUTTON_TEXT" : "الخلف",
   "DELETE_BUTTON": "حذف",
-
-
+  "ARE_YOU_SURE": "هل أنت متأكد؟",
+  "WARNING": "تحذير",
   "NO_NETWORK": "تحقق من اتصالك بالانترنت رجاء!",
+  "YOU_WANT_DELETE": "هل أنت متأكد من أنك تريد حذف",
+  "CANCEL_BUTTON": "إلغاء",
 
 
   "MAP_TITLE": "خريطة",

@@ -13,8 +13,10 @@
   "TAB3_TITLE": "Settings",
   "ADD":"Add",
   "ALL_FIELDS_REQUIRED": "Please fill all required Fields",
-
+  "ARE_YOU_SURE": "Are you sure?",
   "NO_NETWORK": "Please check your internet connection!",
+  "WARNING": "Warning",
+  "YOU_WANT_DELETE": "This will DELETE ",
 
   "MAP_TITLE": "Map",
 
