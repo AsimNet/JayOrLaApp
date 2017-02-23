@@ -1,11 +1,10 @@
-import { Component } from '@angular/core';
+import { Component} from '@angular/core';
 import { Event } from '../../models/event';
 import { NavController, ModalController, Platform, AlertController } from 'ionic-angular';
 import { Events } from '../../providers/events';
 import { AddNewEventPage } from '../add-new-event/add-new-event';
 import { Database } from '../../providers/database';
 import { TranslateService } from 'ng2-translate/ng2-translate';
-
 
 @Component({
   selector: 'page-home',

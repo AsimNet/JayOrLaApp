@@ -9,7 +9,6 @@ import * as moment from 'moment';
 import { Response } from '@angular/http';
 import { Network } from 'ionic-native'
 import { Database } from "../../providers/database";
-
 /*
   Generated class for the AddNewEvent page.
 
@@ -31,8 +30,9 @@ declare var window: Window;
 })
 
 export class AddNewEventPage {
-  day;
-  time;
+  day =  moment().format('YYYY-MM-DD');
+  time =  moment(moment().format(), moment.ISO_8601).format();
+
   notes;
   dateTime;
   title;
@@ -51,6 +51,7 @@ export class AddNewEventPage {
     this.translate.get('ADD_EVENT_ERROR').subscribe((value) => {
       this.addEventError = value;
     })
+
   }
 
   ionViewDidLoad() {

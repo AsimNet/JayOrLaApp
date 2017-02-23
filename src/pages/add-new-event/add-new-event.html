@@ -32,7 +32,7 @@
       </ion-item>
       <ion-item>
         <ion-label>*{{'TIME' | translate}}: </ion-label>
-        <ion-datetime displayFormat="h:mm A" [(ngModel)]="time" name="time" (ionChange)="storeDate()" required></ion-datetime>
+        <ion-datetime pickerFormat="hh:mm A" displayFormat="hh:mm A" [(ngModel)]="time" name="time" (ionChange)="storeDate()" required></ion-datetime>
       </ion-item>
       <ion-item  *ngIf="dateTime !== undefined" text-wrap>
     <h6  ion-text color="notes">{{'NOTICE_ADD_EVENT' | translate}}:<span text-wrap ion-text color="danger"> {{dateTime.format("MMMM Do YYYY, h:mm A")}}</span></h6>

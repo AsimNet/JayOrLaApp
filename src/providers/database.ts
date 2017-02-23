@@ -20,13 +20,13 @@ export class Database {
       Database.db.transaction(function (tx) {
 
         tx.executeSql(`INSERT INTO event (Name, UserId, EndDate, Notes, Hash, CreatedAt, UpdatedAt, EventId) VALUES (?,?,?,?,?,?,?,?)`, [model.getName, model.getUser_id, model.getEndDate, model.getNotes, model.getHash, model.created_at, model.updated_at, model.id], function (tx, results) {
-          console.log("Last event inserted ID: " + Number(model.getEventId));
+          // console.log("Last event inserted ID: " + Number(model.getEventId));
           resolve(results);
 
         });
 
       }).then(() => {
-        console.log('event Table insertion done successfully');
+        // console.log('event Table insertion done successfully');
 
         // let watcher = Watcher.getInstance();
         // watcher.watch(event);
@@ -55,7 +55,7 @@ export class Database {
         for (var i = 0; i < data.rows.length; i++) {
 
           let item = data.rows.item(i);
-          console.log("Got SQL Results@getEvents: " + data.rows.item(i).Name);
+          // console.log("Got SQL Results@getEvents: " + data.rows.item(i).Name);
 
           let event: Event = new Event(item.Name, item.UserId, item.EndDate, item.Notes, item.Hash, item.CreatedAt, item.UpdatedAt, item.EventId);
           result.push(
@@ -76,7 +76,7 @@ export class Database {
 
 
   public static create = () => {
-    console.log("@create");
+    // console.log("@create");
 
     Database.db.openDatabase({
       name: 'data.db',
@@ -89,8 +89,8 @@ export class Database {
 
 
       }).catch((err) => {
-        console.log("ERRORWHEN CREATING TABLES");
-        console.log(err.message);
+        // console.log("ERRORWHEN CREATING TABLES");
+        // console.log(err.message);
       });
 
     })
@@ -102,12 +102,12 @@ export class Database {
 
 
   public deleteEvent(event: Event) {
-    // console.log("deleteevent id: "+ event.getId);
-    // console.log(<event>event);
+    // // console.log("deleteevent id: "+ event.getId);
+    // // console.log(<event>event);
     let id = event.id;
 
-    console.log(" id == : " + id);
-    console.log(" event == : " + JSON.stringify(event));
+    // console.log(" id == : " + id);
+    // console.log(" event == : " + JSON.stringify(event));
 
     return Database.db.openDatabase(Database.DB_LOCATION).then(() => {
       return Database.db.executeSql(`
@@ -117,7 +117,7 @@ export class Database {
         `, [id])
 
     }).catch(error => {
-      console.log("error with deleteing event: " + id + error);
+      // console.log("error with deleteing event: " + id + error);
 
     })
   }

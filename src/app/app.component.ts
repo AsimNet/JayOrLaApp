@@ -15,6 +15,7 @@ import { Database } from "../providers/database";
 })
 export class MyApp {
   rootPage;
+public static usersLanguage;
 
   @ViewChild(Nav) nav: Nav;
 
@@ -30,8 +31,9 @@ export class MyApp {
               public database: Database) {
     // Set the default language for translation strings, and the current language.
     translate.setDefaultLang('en');
-    translate.use('en')
-
+    MyApp.usersLanguage = translate.getBrowserCultureLang();
+    translate.use(translate.getBrowserLang());
+    console.log("translate.getBrowserCultureLang(): "+ MyApp.usersLanguage+" translate.getBrowserLang(): "+translate.getBrowserLang())
     translate.get(['BACK_BUTTON_TEXT']).subscribe(values => {
       config.set('ios', 'backButtonText', values.BACK_BUTTON_TEXT);
     });
