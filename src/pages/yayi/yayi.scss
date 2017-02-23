@@ -1,8 +1,11 @@
+
+@import url('https://fonts.googleapis.com/css?family=Lato:300,400');
 page-yayi {
+
 
    border-radius: 14px !important;
     overflow:hidden !important;
-    height: 50%;
+    height: 55%;
     width: 50%;
 
 
@@ -15,21 +18,23 @@ page-yayi {
  display: block;
     margin-left: auto;
     margin-right: auto;
-    height: 55%;
+    height: 50%;
     max-height: 346.5px;
 
     }
     .yayi{
         text-align: center;
         color: #ff9800;
-        font-family: 'Roboto';
+        font-family: 'Lato', sans-serif;
+        font-weight:400;
         font-size: 50px;
 
     }
     .shareLink{
         text-align: center;
         color: #4db6ac;
-        font-family: 'Roboto-Light';
+        font-family: 'Lato', sans-serif;
+        font-weight:400;
         font-size: 30px;
          margin: 0 0;
 
@@ -37,7 +42,8 @@ page-yayi {
     .URL{
         text-align: center;
         color: #4db6ac;
-        font-family: 'Roboto-Light';
+        font-family: 'Lato', sans-serif;
+        font-weight:300;
         font-size: 20px;
         position: relative;
 
@@ -49,7 +55,7 @@ page-yayi {
          margin: 0 0;
          padding: 0 0;
          bottom: 0;
-color: #fff;
+         color: #fff;
             }
     
 
@@ -59,8 +65,8 @@ ion-modal {
     .modal-wrapper {
  position: absolute;
     width: 90%;
-    height: 65%; 
-    top: 20%;
+    height: 75%; 
+    top: 11%;
     left: 5%;
     }
 }

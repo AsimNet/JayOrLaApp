@@ -10,6 +10,8 @@ import * as moment from 'moment';
 import { Response } from '@angular/http';
 import { Network } from 'ionic-native'
 import { Database } from "../../providers/database";
+import 'moment/locale/ar-SA';
+import { MyApp } from '../../app/app.component';
 /*
   Generated class for the AddNewEvent page.
 
@@ -31,13 +33,10 @@ declare var window: Window;
 })
 
 export class AddNewEventPage {
-  day = moment().format('YYYY-MM-DD');
-  time = moment(moment().format(), moment.ISO_8601).format();
-
   notes;
-  dateTime;
+  dateTime = moment().format();
   title;
-
+dateTimeString  = moment(this.dateTime);
   private addEventError: string;
 
   constructor(public navCtrl: NavController,
@@ -52,24 +51,27 @@ export class AddNewEventPage {
     public database: Database) {
     this.translate.get('ADD_EVENT_ERROR').subscribe((value) => {
       this.addEventError = value;
+      
     })
+    this.dateTimeString.locale(MyApp.usersLanguage);
+
+    // this.dateTime.locale(MyApp.usersLanguage);
 
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad AddNewEventPage');
+
   }
 
   storeDate() {
-    if (this.day && this.time) {
-      this.dateTime = moment(this.day + " " + this.time + " " + moment().format('Z'), "YYYY-MM-DD HH:mm Z");
-
-    }
-
+ this.dateTimeString = moment(this.dateTime);
+this.dateTimeString.locale(MyApp.usersLanguage);
   }
 
+
   addNewEvent() {
-    if (this.day && this.time && this.title) {
+    if ( this.title) {
       let loader = this.loadingCtrl.create({
         content: this.translate.instant("ADDING_EVENT"),
       });
@@ -77,7 +79,8 @@ export class AddNewEventPage {
       if (Network.type !== 'none') {
 
         this.storage.get(SignupPage.ACCOUNT_KEY).then((user) => {
-          let end_time = this.dateTime.format('X');
+          console.log(moment(this.dateTime).format('X'));
+          let end_time = moment(this.dateTime).format('X')
           let event = new Event(this.title, Number(user.id), end_time, this.notes);
           this.events.addEvent(event).subscribe((resp: Response) => {
             //event created successfully

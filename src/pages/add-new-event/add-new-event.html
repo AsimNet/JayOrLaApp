@@ -28,14 +28,14 @@
       </ion-item>
       <ion-item>
         <ion-label>*{{'DAY'| translate}}: </ion-label>
-        <ion-datetime pickerFormat="YYYY-MM-DD" displayFormat="MMM DD YYYY" [(ngModel)]="day" name="day" min="2017" (ionChange)="storeDate()" required></ion-datetime>
+        <ion-datetime pickerFormat="YYYY-MM-DD" displayFormat="MMM DD YYYY" [(ngModel)]="dateTime" name="dateTime" min="2017" (ionChange)="storeDate()" required></ion-datetime>
       </ion-item>
       <ion-item>
         <ion-label>*{{'TIME' | translate}}: </ion-label>
-        <ion-datetime pickerFormat="hh:mm A" displayFormat="hh:mm A" [(ngModel)]="time" name="time" (ionChange)="storeDate()" required></ion-datetime>
+        <ion-datetime pickerFormat="hh:mm A" displayFormat="hh:mm A" [(ngModel)]="dateTime" name="dateTime" (ionChange)="storeDate()" required></ion-datetime>
       </ion-item>
       <ion-item  *ngIf="dateTime !== undefined" text-wrap>
-    <h6  ion-text color="notes">{{'NOTICE_ADD_EVENT' | translate}}:<span text-wrap ion-text color="danger"> {{dateTime.format("MMMM Do YYYY, h:mm A")}}</span></h6>
+    <h6  ion-text color="notes">{{'NOTICE_ADD_EVENT' | translate}}:<span text-wrap ion-text color="danger"> {{dateTimeString.format("llll")}}</span></h6>
       </ion-item>
       <ion-item>
         <ion-label floating>{{'NOTES'}}</ion-label>

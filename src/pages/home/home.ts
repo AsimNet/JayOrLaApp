@@ -1,6 +1,6 @@
-import { Component} from '@angular/core';
+import { Component } from '@angular/core';
 import { Event } from '../../models/event';
-import { NavController, ModalController, Platform, AlertController } from 'ionic-angular';
+import { NavController, ModalController, Platform, AlertController, App } from 'ionic-angular';
 import { Events } from '../../providers/events';
 import { AddNewEventPage } from '../add-new-event/add-new-event';
 import { Database } from '../../providers/database';
@@ -19,6 +19,7 @@ export class HomePage {
     public translate: TranslateService,
     public alertCtrl: AlertController,
     public database: Database,
+    public app: App,
     public platform: Platform) {
 
   }
@@ -41,11 +42,8 @@ export class HomePage {
   }
 
   addNewEvent() {
-    let addEventPage = this.modalCtrl.create(AddNewEventPage);
-    addEventPage.onWillDismiss(() => {
-      this.loadEventsList()
-    })
-    addEventPage.present();
+    let nav = this.app.getRootNav();
+    nav.push(AddNewEventPage);
 
   }
 
