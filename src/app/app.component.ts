@@ -5,6 +5,7 @@ import { StatusBar, Splashscreen } from 'ionic-native';
 import { SignupPage } from '../pages/signup/signup';
 import { TabsPage } from '../pages/tabs/tabs';
 import { TutorialPage } from '../pages/tutorial/tutorial';
+
 import {Storage} from '@ionic/storage';
 
 import { TranslateService } from 'ng2-translate/ng2-translate';
@@ -14,7 +15,7 @@ import { Database } from "../providers/database";
   template: `<ion-nav #content [root]="rootPage"></ion-nav>`
 })
 export class MyApp {
-  rootPage;
+  rootPage ;
 public static usersLanguage;
 
   @ViewChild(Nav) nav: Nav;
@@ -55,7 +56,9 @@ public static usersLanguage;
           this.rootPage = TabsPage;
         }
       });
+      
     });
+    
   }
 
   openPage(page) {

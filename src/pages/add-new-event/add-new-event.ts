@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, ToastController, LoadingController, ViewController } from 'ionic-angular';
+import { NavController, NavParams, ToastController, LoadingController, ViewController, ModalController } from 'ionic-angular';
 import { TranslateService } from 'ng2-translate/ng2-translate';
 import { Events } from '../../providers/events';
 import { Event } from '../../models/event';
 import { Storage } from '@ionic/storage';
 import { SignupPage } from '../signup/signup';
+import { YayiPage } from '../yayi/yayi';
 import * as moment from 'moment';
 import { Response } from '@angular/http';
 import { Network } from 'ionic-native'
@@ -30,8 +31,8 @@ declare var window: Window;
 })
 
 export class AddNewEventPage {
-  day =  moment().format('YYYY-MM-DD');
-  time =  moment(moment().format(), moment.ISO_8601).format();
+  day = moment().format('YYYY-MM-DD');
+  time = moment(moment().format(), moment.ISO_8601).format();
 
   notes;
   dateTime;
@@ -47,6 +48,7 @@ export class AddNewEventPage {
     public storage: Storage,
     public loadingCtrl: LoadingController,
     public viewCtrl: ViewController,
+    public modalCtrl: ModalController,
     public database: Database) {
     this.translate.get('ADD_EVENT_ERROR').subscribe((value) => {
       this.addEventError = value;
@@ -65,6 +67,7 @@ export class AddNewEventPage {
     }
 
   }
+
   addNewEvent() {
     if (this.day && this.time && this.title) {
       let loader = this.loadingCtrl.create({
@@ -80,26 +83,34 @@ export class AddNewEventPage {
             //event created successfully
             loader.dismiss();
             if (resp.status == 200) {
-            
+
               let results = resp.json();
-           
+
               console.log("results: " + results);
-            
+
               event.hash = results.hash;
               event.id = results.id;
               event.created_at = results.created_at;
               event.updated_at = results.updated_at;
-       
-              this.database.addToDB(event).then(()=>{
-                //dismiss the view!
-                this.viewCtrl.dismiss();
-              }).catch(()=>{
-                 let toast = this.toastCtrl.create({
-                message: "ERROR: SQL",
-                duration: 4500,
-                position: 'top'
-              });
-              toast.present();
+
+              this.database.addToDB(event).then(() => {
+                //show success message
+                let modal = this.modalCtrl.create(YayiPage, {}, {
+                  showBackdrop: true
+                });
+                modal.present({
+                  animate: true
+                })
+                modal.onWillDismiss(()=>{
+                 this.viewCtrl.dismiss();
+                })
+              }).catch(() => {
+                let toast = this.toastCtrl.create({
+                  message: "ERROR: SQL",
+                  duration: 4500,
+                  position: 'top'
+                });
+                toast.present();
               });
 
             } else {
@@ -142,4 +153,5 @@ export class AddNewEventPage {
     }
 
   }
+
 }
