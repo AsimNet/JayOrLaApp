@@ -45,4 +45,5 @@
     <allow-navigation href="https://jayorla.xyz" />
     <plugin name="com.sharinglabs.cordova.plugin.datepicker" spec="https://github.com/Sharinglabs/cordova-plugin-datepicker" />
     <plugin name="cordova-sqlite-storage" spec="~2.0.2" />
+    <plugin name="com.verso.cordova.clipboard" spec="https://github.com/VersoSolutions/CordovaClipboard.git" />
 </widget>

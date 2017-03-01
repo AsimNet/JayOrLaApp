@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, ToastController, LoadingController, ViewController, ModalController } from 'ionic-angular';
+import { NavController, NavParams, ToastController, LoadingController, ViewController, ModalController, App } from 'ionic-angular';
 import { TranslateService } from 'ng2-translate/ng2-translate';
 import { Events } from '../../providers/events';
 import { Event } from '../../models/event';
@@ -36,7 +36,7 @@ export class AddNewEventPage {
   notes;
   dateTime = moment().format();
   title;
-dateTimeString  = moment(this.dateTime);
+  dateTimeString = moment(this.dateTime);
   private addEventError: string;
 
   constructor(public navCtrl: NavController,
@@ -48,10 +48,11 @@ dateTimeString  = moment(this.dateTime);
     public loadingCtrl: LoadingController,
     public viewCtrl: ViewController,
     public modalCtrl: ModalController,
+    public app: App,
     public database: Database) {
     this.translate.get('ADD_EVENT_ERROR').subscribe((value) => {
       this.addEventError = value;
-      
+
     })
     this.dateTimeString.locale(MyApp.usersLanguage);
 
@@ -65,13 +66,13 @@ dateTimeString  = moment(this.dateTime);
   }
 
   storeDate() {
- this.dateTimeString = moment(this.dateTime);
-this.dateTimeString.locale(MyApp.usersLanguage);
+    this.dateTimeString = moment(this.dateTime);
+    this.dateTimeString.locale(MyApp.usersLanguage);
   }
 
 
   addNewEvent() {
-    if ( this.title) {
+    if (this.title) {
       let loader = this.loadingCtrl.create({
         content: this.translate.instant("ADDING_EVENT"),
       });
@@ -98,15 +99,15 @@ this.dateTimeString.locale(MyApp.usersLanguage);
 
               this.database.addToDB(event).then(() => {
                 //show success message
-                let modal = this.modalCtrl.create(YayiPage, {}, {
-                  showBackdrop: true
-                });
+                let modal = this.modalCtrl.create(YayiPage, {
+                  Event: event
+                }, {
+                    showBackdrop: true
+                  });
                 modal.present({
                   animate: true
                 })
-                modal.onWillDismiss(()=>{
-                 this.viewCtrl.dismiss();
-                })
+               
               }).catch(() => {
                 let toast = this.toastCtrl.create({
                   message: "ERROR: SQL",

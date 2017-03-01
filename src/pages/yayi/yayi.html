@@ -9,8 +9,8 @@
 <ion-content no-bounce>
   <div class="roundedDev">
 <img class="firsworks" src="assets/img/fireworks.jpg"/>
-<h1 class="yayi">Yaaayi</h1>
-<h6 class="shareLink">Now share this link with your friends!<br><span class="URL">https://JayOrLa.xyz/participate/3232fds</span></h6>
-<button class="copyURL" ion-button color="secondary" (click)="dismiss()">copy URL!</button>
+<h1 class="yayi">{{"YAYI" | translate}}</h1>
+<h6 class="shareLink">{{"YAYI_DESCRIPTION"| translate}}<br><span class="URL">https://JayOrLa.xyz/participate/{{event.hash}}</span></h6>
+<button class="copyURL" ion-button color="secondary" (click)="dismiss()">{{"COPY_URL" | translate}}</button>
 </div>
 </ion-content>

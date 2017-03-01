@@ -11,7 +11,7 @@ import { TranslateService } from 'ng2-translate/ng2-translate';
   templateUrl: 'home.html'
 })
 export class HomePage {
-  eventsList: Event[] = [];
+  public static  eventsList: Event[] = [];
 
   constructor(public navCtrl: NavController,
     public modalCtrl: ModalController,
@@ -24,27 +24,25 @@ export class HomePage {
 
   }
 
-  ionViewWillLeave() {
-    this.eventsList = [];
-  }
-
+get eventsList(){
+    return HomePage.eventsList;
+}
   loadEventsList() {
     this.platform.ready().then(() => {
 
       this.database.getEvents().then((results) => {
 
-        this.eventsList = results;
+        HomePage.eventsList = results;
       })
     })
   }
   ionViewWillEnter() {
-    this.loadEventsList()
+   // this.loadEventsList();
+    console.log("CAME BACK!")
   }
-
   addNewEvent() {
     let nav = this.app.getRootNav();
     nav.push(AddNewEventPage);
-
   }
 
   open(event: Event) {
@@ -64,8 +62,8 @@ export class HomePage {
         text: this.translate.instant("DELETE_BUTTON"),
         handler: () => {
           this.database.deleteEvent(event).then(() => {
-            let eventIndex = this.eventsList.indexOf(event);
-            this.eventsList.splice(eventIndex, 1);
+            let eventIndex = HomePage.eventsList.indexOf(event);
+            HomePage.eventsList.splice(eventIndex, 1);
           })
         }
       }]

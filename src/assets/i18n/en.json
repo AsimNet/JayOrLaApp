@@ -76,5 +76,9 @@
   "ADDING_EVENT": "Adding the event..",
 
   "SEARCH_TITLE": "Search",
-  "SEARCH_PLACEHOLDER" : "Search the items list, e.g. \"Donald Duck\""
+  "SEARCH_PLACEHOLDER" : "Search the items list, e.g. \"Donald Duck\"",
+
+  "COPY_URL": "copy URL!",
+  "YAYI":"Yaaayi",
+  "YAYI_DESCRIPTION": "Now share this link with your friends!"
 }
