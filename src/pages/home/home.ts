@@ -5,7 +5,7 @@ import { Events } from '../../providers/events';
 import { AddNewEventPage } from '../add-new-event/add-new-event';
 import { Database } from '../../providers/database';
 import { TranslateService } from 'ng2-translate/ng2-translate';
-
+import {EventDetailsPage} from '../event-details/event-details'
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
@@ -38,7 +38,7 @@ get eventsList(){
   }
   ionViewWillEnter() {
    // this.loadEventsList();
-    console.log("CAME BACK!")
+    console.log("CAME BACK!");
   }
   addNewEvent() {
     let nav = this.app.getRootNav();
@@ -47,7 +47,10 @@ get eventsList(){
 
   open(event: Event) {
     //user did click on an event on the list;
-
+    let nav = this.app.getRootNav();
+    nav.push(EventDetailsPage,{
+      event: event
+    });
   }
 
   delete(event: Event) {

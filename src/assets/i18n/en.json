@@ -80,5 +80,9 @@
 
   "COPY_URL": "copy URL!",
   "YAYI":"Yaaayi",
-  "YAYI_DESCRIPTION": "Now share this link with your friends!"
+  "YAYI_DESCRIPTION": "Now share this link with your friends!",
+
+  "EVENT_DETAILS":"Event Details",
+  "WILL_COME": "Will attend",
+  "WONT_COME": "Won't attend"
 }

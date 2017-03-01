@@ -11,6 +11,7 @@ import { TutorialPage } from '../pages/tutorial/tutorial';
 import { HomePage } from '../pages/home/home';
 import { AddNewEventPage } from '../pages/add-new-event/add-new-event';
 import { YayiPage } from '../pages/yayi/yayi';
+import { EventDetailsPage } from '../pages/event-details/event-details';
 
 import { User } from '../providers/user';
 import { Api } from '../providers/api';
@@ -40,7 +41,8 @@ let pages = [
   TutorialPage,
   HomePage,
   AddNewEventPage,
-  YayiPage
+  YayiPage,
+  EventDetailsPage
 ];
 
 export function declarations() {

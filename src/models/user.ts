@@ -3,6 +3,7 @@
 
 export class User {
     isComing: boolean = false;
+    updatedAt: string
 
 
   constructor(private name: string,
