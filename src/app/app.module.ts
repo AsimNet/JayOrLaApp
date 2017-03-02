@@ -18,6 +18,7 @@ import { Api } from '../providers/api';
 import { Events } from '../providers/events';
 import { Database } from "../providers/database";
 import {UtcToDate} from '../pipes/utc-to-date';
+import {ApiDateToString} from '../pipes/api-date-to-string';
 
 
 import { TranslateModule, TranslateLoader, TranslateStaticLoader } from 'ng2-translate/ng2-translate';
@@ -67,7 +68,7 @@ export function providers() {
 }
 
 @NgModule({
-  declarations: [declarations(), UtcToDate],
+  declarations: [declarations(), UtcToDate,ApiDateToString],
   imports: [
     IonicModule.forRoot(MyApp),
     TranslateModule.forRoot({

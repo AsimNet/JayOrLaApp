@@ -6,10 +6,10 @@ import { Event } from '../../models/event';
 import { Storage } from '@ionic/storage';
 import { SignupPage } from '../signup/signup';
 import { YayiPage } from '../yayi/yayi';
-import * as moment from 'moment';
 import { Response } from '@angular/http';
 import { Network } from 'ionic-native'
 import { Database } from "../../providers/database";
+import * as moment from 'moment';
 import 'moment/locale/ar-SA';
 import { MyApp } from '../../app/app.component';
 /*
@@ -107,7 +107,7 @@ export class AddNewEventPage {
                 modal.present({
                   animate: true
                 })
-               
+
               }).catch(() => {
                 let toast = this.toastCtrl.create({
                   message: "ERROR: SQL",
@@ -143,7 +143,13 @@ export class AddNewEventPage {
         });
 
       } else {
-
+        // no internet conncetion!
+        let toast = this.toastCtrl.create({
+          message: this.translate.instant("NO_NETWORK"),
+          duration: 3000,
+          position: 'top'
+        });
+        toast.present();
       }
     } else {
 

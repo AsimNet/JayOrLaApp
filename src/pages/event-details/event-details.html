@@ -19,7 +19,7 @@
 
 <ion-content no-bounce>
     <!-- Segment in content -->
-  <ion-segment [(ngModel)]="segment" color="primary">
+  <ion-segment [(ngModel)]="segment" color="primary" (ionChange)="updateList()">
     <ion-segment-button value="willCome">
       {{'WILL_COME'| translate}}
     </ion-segment-button>
@@ -30,12 +30,14 @@
 
 
   <ion-list no-lines>
-    <ion-item color="primary" *ngFor="let user of usersList">
+    <ion-item color="primary" *ngFor="let user of showOnly">
       <ion-avatar item-left>
         <img src="https://api.adorable.io/avatars/193/{{user.getName}}.png">
       </ion-avatar>
       <h2>{{user.getName}}</h2>
-      <h6>{{event.updatedAt}}</h6>
+      <h6>{{user.updatedAt | apiDateToString}}</h6>
+      <h6>{{user.updatedAt}}</h6>
+
     </ion-item>
   </ion-list>
 </ion-content>

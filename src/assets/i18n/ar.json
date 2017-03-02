@@ -69,6 +69,8 @@
   
   "EVENT_DETAILS": "تفاصيل المناسبة",
   "WILL_COME": "سيحضرون",
-  "WONT_COME": "لن يحضروا"
+  "WONT_COME": "لن يحضروا",
+  "GETTING_DETAILS": "جار جلب المعلومات..."
+
 
 }

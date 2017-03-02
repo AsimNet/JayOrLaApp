@@ -2,12 +2,16 @@
 
 
 export class User {
-    isComing: boolean = false;
-    updatedAt: string
+    
 
 
-  constructor(private name: string,
-              private id?:number) {
+  constructor(public name: string,
+              public id?:number,
+              public isComing?: boolean,
+              public created_at?: string,
+              public updatedAt?: string,
+              public ip?: string,
+              public event_id?: number  ) {
 
 
               }
