@@ -3,8 +3,7 @@ import { NavController, NavParams, LoadingController, ToastController } from 'io
 import { Events } from '../../providers/events'
 import { TranslateService } from 'ng2-translate/ng2-translate';
 import { User } from '../../models/user'
-import { Network } from 'ionic-native'
-import { Clipboard } from 'ionic-native';
+import { Network, SocialSharing } from 'ionic-native'
 
 /*
   Generated class for the EventDetails page.
@@ -88,7 +87,8 @@ export class EventDetailsPage {
     console.log('ionViewDidLoad EventDetailsPage');
   }
   shareEvent() {
-    Clipboard.copy("https://JayOrLa.xyz/participate/" + this.event.hash);
+    let url:string = "https://JayOrLa.xyz/participate/" + this.event.hash;
+    SocialSharing.share(url, 'JayOrLa',null,null);
 
   }
 }
