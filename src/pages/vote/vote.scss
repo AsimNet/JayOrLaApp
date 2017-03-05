@@ -1,0 +1,39 @@
+page-vote {
+.noLines{
+    display: inline-flex;
+
+}
+.mainText{
+        margin: 8px 2px 0px 8px;
+
+}
+.container{
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+display: flex;
+  flex-flow: row no-wrap;
+  /* This aligns items to the end line on main-axis */
+  justify-content: space-around;
+
+}
+.buttons{
+        flex-grow: 1;
+         text-align: center;
+    margin: 3px 3px 4px 3px;
+
+}
+.roundedDev{
+        height: 100%;
+        width: 100%;
+
+    }
+    .textarea{
+        height: 72%;
+        width: 97%;
+        border: 0;
+        margin: 8px 2px 0px 11px;
+        word-wrap: break-word;
+        padding: 0;
+    }
+}

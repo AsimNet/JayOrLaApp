@@ -1,12 +1,12 @@
 import { Component, ViewChild } from '@angular/core';
-import {Platform, Nav, Config} from 'ionic-angular';
+import { Platform, Nav, Config } from 'ionic-angular';
 import { StatusBar, Splashscreen } from 'ionic-native';
 
 import { SignupPage } from '../pages/signup/signup';
 import { TabsPage } from '../pages/tabs/tabs';
 import { TutorialPage } from '../pages/tutorial/tutorial';
 
-import {Storage} from '@ionic/storage';
+import { Storage } from '@ionic/storage';
 
 import { TranslateService } from 'ng2-translate/ng2-translate';
 import { Database } from "../providers/database";
@@ -15,8 +15,8 @@ import { Database } from "../providers/database";
   template: `<ion-nav #content [root]="rootPage"></ion-nav>`
 })
 export class MyApp {
-  rootPage ;
-public static usersLanguage;
+  rootPage;
+  public static usersLanguage;
 
   @ViewChild(Nav) nav: Nav;
 
@@ -25,16 +25,16 @@ public static usersLanguage;
     { title: 'Tabs', component: TabsPage }
   ]
 
-  constructor(translate: TranslateService, 
-              platform: Platform, 
-              config: Config,
-              public storage: Storage,
-              public database: Database) {
+  constructor(translate: TranslateService,
+    platform: Platform,
+    config: Config,
+    public storage: Storage,
+    public database: Database) {
     // Set the default language for translation strings, and the current language.
     translate.setDefaultLang('en');
     MyApp.usersLanguage = translate.getBrowserCultureLang();
     translate.use(translate.getBrowserLang());
-    console.log("translate.getBrowserCultureLang(): "+ MyApp.usersLanguage+" translate.getBrowserLang(): "+translate.getBrowserLang())
+    console.log("translate.getBrowserCultureLang(): " + MyApp.usersLanguage + " translate.getBrowserLang(): " + translate.getBrowserLang())
     translate.get(['BACK_BUTTON_TEXT']).subscribe(values => {
       config.set('ios', 'backButtonText', values.BACK_BUTTON_TEXT);
     });
@@ -47,18 +47,18 @@ public static usersLanguage;
       this.createDB();
 
       this.storage.get(SignupPage.ACCOUNT_KEY).then((user) => {
-        console.log("USER REGISTERATION STATUS: "+ user);
-        if(!user){
+        console.log("USER REGISTERATION STATUS: " + user);
+        if (!user) {
           //show him tutorial..
           this.rootPage = TutorialPage;
-        }else{
+        } else {
           //show him main page
           this.rootPage = TabsPage;
         }
       });
-      
+
     });
-    
+
   }
 
   openPage(page) {
@@ -67,7 +67,7 @@ public static usersLanguage;
     this.nav.setRoot(page.component);
   }
 
-   private createDB(): void {
+  private createDB(): void {
 
     Database.db.openDatabase(Database.DB_LOCATION).then(Database.create)
       .catch((err) => {

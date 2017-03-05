@@ -85,5 +85,10 @@
   "EVENT_DETAILS":"Event Details",
   "WILL_COME": "Will attend",
   "WONT_COME": "Won't attend",
-  "GETTING_DETAILS": "Getting details..."
+  "GETTING_DETAILS": "Getting details...",
+
+    "VOTE_PAGE_TITLE": "Event details",
+    "ATTENDERS_NAME": "Created by"
+
+
 }

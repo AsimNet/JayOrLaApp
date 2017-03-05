@@ -19,13 +19,6 @@ import { MyApp } from '../../app/app.component';
   Ionic pages and navigation.
 */
 
-interface Window {
-  plugins: any;
-  cordova: any;
-}
-declare var plugin;
-declare var window: Window;
-
 
 @Component({
   selector: 'page-add-new-event',
