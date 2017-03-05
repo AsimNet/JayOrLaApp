@@ -70,9 +70,10 @@
   "EVENT_DETAILS": "تفاصيل المناسبة",
   "WILL_COME": "سيحضرون",
   "WONT_COME": "لن يحضروا",
-  "GETTING_DETAILS": "...جار جلب المعلومات",
+  "GETTING_DETAILS": "...جلب المعلومات جارٍ",
 
   "VOTE_PAGE_TITLE": "تفاصيل المناسبة",
-  "ATTENDERS_NAME": "اسم المنظم"
+  "ATTENDERS_NAME": "اسم المنظم",
+  "VOTING": "...تسجيل الحضور"
 
 }

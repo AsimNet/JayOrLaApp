@@ -3,7 +3,6 @@ import { NavController, NavParams, ViewController,App } from 'ionic-angular';
 import { Event } from '../../models/event';
 import { TranslateService } from 'ng2-translate/ng2-translate';
 import { Clipboard } from 'ionic-native';
-import {TabsPage} from '../tabs/tabs'
 /*
   Generated class for the Yayi page.
 

@@ -12,10 +12,11 @@ import { MyApp } from '../app/app.component';
 export class UtcToDate {
   
   transform(value, args) {
-      let date = moment.utc(value,'X');
+          console.log(value)
+      let date = moment.unix(value);
       console.log(date)
       date.locale(MyApp.usersLanguage);
-      let fromNow = date.fromNow();
+      let fromNow = moment(date).calendar();
     return fromNow;
   }
 } 

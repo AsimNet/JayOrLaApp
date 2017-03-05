@@ -72,19 +72,19 @@ export class Events {
     return seq;
   }
 
-  participate(user: User, eventId: number) {
+  participate(user: User, hashCode: string) {
     let seq = this.api.post('participate', {
       name: user.getName,
-      is_coming: user.isComing,
-      event_id: eventId
+      is_coming: user.getIsComing,
+      hash: hashCode
     }).share();
 
     seq
       .map(res => res.json())
       .subscribe(res => {
         // If the API returned a successful response, mark the user as logged in
-        if (res.status == 'success') {
-
+        if (res.status === 'success') {
+console.log(res);
         }
       }, err => {
         console.error('ERROR', err);

@@ -74,8 +74,8 @@ export class AddNewEventPage {
 
         this.storage.get(SignupPage.ACCOUNT_KEY).then((user) => {
           console.log(moment(this.dateTime).format('X'));
-          let end_time = moment(this.dateTime).format('X')
-          let event = new Event(this.title, Number(user.id), end_time, this.notes);
+          let end_time = moment(this.dateTime).format('X');
+          let event = new Event(this.title, Number(user.id), Number(end_time), this.notes);
           this.events.addEvent(event).subscribe((resp: Response) => {
             //event created successfully
             loader.dismiss();
@@ -148,7 +148,7 @@ export class AddNewEventPage {
 
       let toast = this.toastCtrl.create({
         message: this.translate.instant("ALL_FIELDS_REQUIRED"),
-        duration: 3000,
+        duration: 2500,
         position: 'top'
       });
       toast.present();

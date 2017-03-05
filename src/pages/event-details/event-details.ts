@@ -4,6 +4,8 @@ import { Events } from '../../providers/events'
 import { TranslateService } from 'ng2-translate/ng2-translate';
 import { User } from '../../models/user'
 import { Network } from 'ionic-native'
+import { Clipboard } from 'ionic-native';
+
 /*
   Generated class for the EventDetails page.
 
@@ -21,7 +23,7 @@ export class EventDetailsPage {
   usersList: User[] = [];
   showOnly: User[] = [];
   loader;
-   
+
   constructor(public navCtrl: NavController, public navParams: NavParams,
     public loadingCtrl: LoadingController,
     public toastCtrl: ToastController,
@@ -45,13 +47,13 @@ export class EventDetailsPage {
 
     }
   }
-  ionViewWillLeave(){
+  ionViewWillLeave() {
     //dismiss all loaders!
     this.loader.dismiss();
   }
   ionViewWillEnter() {
     console.log(this.event)
-     this.loader = this.loadingCtrl.create({
+    this.loader = this.loadingCtrl.create({
       content: this.translate.instant("GETTING_DETAILS"),
     });
     this.loader.present();
@@ -86,6 +88,7 @@ export class EventDetailsPage {
     console.log('ionViewDidLoad EventDetailsPage');
   }
   shareEvent() {
+    Clipboard.copy("https://JayOrLa.xyz/participate/" + this.event.hash);
 
   }
 }

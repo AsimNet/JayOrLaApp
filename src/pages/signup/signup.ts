@@ -6,7 +6,7 @@ import { Network } from 'ionic-native'
 import { TabsPage } from '../tabs/tabs';
 import { User } from '../../providers/user';
 import { Storage } from '@ionic/storage'
-import { Response} from '@angular/http';
+import { Response } from '@angular/http';
 
 @Component({
   selector: 'page-signup',
@@ -39,72 +39,72 @@ export class SignupPage {
 
   // Attempt to login in through our User service
   doLogin() {
-    if(this.account.name.length > 2){
-    let loader = this.loadingCtrl.create({
-      content: this.translateService.instant("SIGNING_UP"),
-    });
-    loader.present();
+    if (this.account.name.length > 2) {
+      let loader = this.loadingCtrl.create({
+        content: this.translateService.instant("SIGNING_UP"),
+      });
+      loader.present();
 
-    if (Network.type !== 'none') {
-      let accountJsoned = JSON.stringify(this.account);
-    //  console.log(accountJsoned);
-      this.user.signup(accountJsoned).subscribe((resp:Response) => {
-        
-let results = resp.json();
+      if (Network.type !== 'none') {
+        let accountJsoned = JSON.stringify(this.account);
+        //  console.log(accountJsoned);
+        this.user.signup(accountJsoned).subscribe((resp: Response) => {
 
-        if (resp.status == 200) {
-          loader.dismiss();
+          let results = resp.json();
 
-          this.storage.set(SignupPage.ACCOUNT_KEY, results).then(() => {
-            console.log("resp status: " + results);
-            this.navCtrl.setRoot(TabsPage, {}, {
-              animate: true,
-              direction: 'forward'
+          if (resp.status == 200) {
+            loader.dismiss();
+
+            this.storage.set(SignupPage.ACCOUNT_KEY, results).then(() => {
+              console.log("resp status: " + results);
+              this.navCtrl.setRoot(TabsPage, {}, {
+                animate: true,
+                direction: 'forward'
+              });
+
             });
+          } else {
+            //something went wrong, like 500 code!
 
-          });
-        } else {
-          //something went wrong, like 500 code!
+            loader.dismiss();
+            let toast = this.toastCtrl.create({
+              message: resp.status + " " + this.loginErrorString,
+              duration: 4500,
+              position: 'top'
+            });
+            toast.present();
+          }
 
-          loader.dismiss();
+        }, (err) => {
+          console.error("doLogin error: " + err);
+          //     // Unable to log in
           let toast = this.toastCtrl.create({
-            message: resp.status + " " + this.loginErrorString,
-            duration: 4500,
+            message: err.status + " " + this.loginErrorString,
+            duration: 3000,
             position: 'top'
           });
           toast.present();
-        }
+          loader.dismiss();
 
-      }, (err) => {
-        console.error("doLogin error: " + err);
-        //     // Unable to log in
-        let toast = this.toastCtrl.create({
-          message: err.status + " " +this.loginErrorString,
-          duration: 3000,
-          position: 'top'
         });
-        toast.present();
-        loader.dismiss();
-
-      });
-    }else{
+      } else {
         let toast = this.toastCtrl.create({
           message: this.translateService.instant("NO_NETWORK"),
           duration: 3000,
           position: 'top'
         });
         toast.present();
-      loader.dismiss();
+        loader.dismiss();
 
+      }
+    } else {
+      //less than 2 letters!
+      let toast = this.toastCtrl.create({
+        message: this.translateService.instant("FILL_REQUIRED"),
+        duration: 3000,
+        position: 'top'
+      });
+      toast.present();
     }
-  }else{
-    //less than 2 letters!
-     let toast = this.toastCtrl.create({
-          message: this.translateService.instant("FILL_REQUIRED"),
-          duration: 3000,
-          position: 'top'
-        });
-        toast.present();
-  }
   }
 }

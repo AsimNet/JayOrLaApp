@@ -88,7 +88,9 @@
   "GETTING_DETAILS": "Getting details...",
 
     "VOTE_PAGE_TITLE": "Event details",
-    "ATTENDERS_NAME": "Created by"
+    "ATTENDERS_NAME": "Created by",
+    "VOTING": "Adding..."
+
 
 
 }
