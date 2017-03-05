@@ -1,10 +1,11 @@
 import { Component, ViewChild } from '@angular/core';
 import { Platform, Nav, Config } from 'ionic-angular';
-import { StatusBar, Splashscreen } from 'ionic-native';
+import { StatusBar, Splashscreen,Deeplinks } from 'ionic-native';
 
 import { SignupPage } from '../pages/signup/signup';
 import { TabsPage } from '../pages/tabs/tabs';
 import { TutorialPage } from '../pages/tutorial/tutorial';
+import { VotePage } from '../pages/vote/vote';
 
 import { Storage } from '@ionic/storage';
 
@@ -26,7 +27,7 @@ export class MyApp {
   ]
 
   constructor(translate: TranslateService,
-    platform: Platform,
+    private platform: Platform,
     config: Config,
     public storage: Storage,
     public database: Database) {
@@ -73,5 +74,18 @@ export class MyApp {
       .catch((err) => {
         console.error('Unable to crate database @MyApp.createDb: ', err);
       });
+  }
+
+  ngAfterViewInit() {
+    this.platform.ready().then(() => {
+      // Convenience to route with a given nav
+      Deeplinks.routeWithNavController(this.nav, {
+        '/participate/:hashCode': VotePage
+      }).subscribe((match) => {
+        console.log('Successfully routed', match);
+      }, (nomatch) => {
+        console.warn('Unmatched Route', nomatch);
+      });
+    })
   }
 }

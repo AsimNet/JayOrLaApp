@@ -46,4 +46,22 @@
     <plugin name="com.sharinglabs.cordova.plugin.datepicker" spec="https://github.com/Sharinglabs/cordova-plugin-datepicker" />
     <plugin name="cordova-sqlite-storage" spec="~2.0.2" />
     <plugin name="com.verso.cordova.clipboard" spec="https://github.com/VersoSolutions/CordovaClipboard.git" />
+    <plugin name="ionic-plugin-deeplinks" spec="~1.0.14">
+        <variable name="URL_SCHEME" value="JayOrLa" />
+        <variable name="DEEPLINK_SCHEME" value="https" />
+        <variable name="DEEPLINK_HOST" value="JayOrLa.xyz" />
+        <variable name="ANDROID_PATH_PREFIX" value="/" />
+        <variable name="ANDROID_2_PATH_PREFIX" value="/" />
+        <variable name="ANDROID_3_PATH_PREFIX" value="/" />
+        <variable name="ANDROID_4_PATH_PREFIX" value="/" />
+        <variable name="ANDROID_5_PATH_PREFIX" value="/" />
+        <variable name="DEEPLINK_2_SCHEME" value=" " />
+        <variable name="DEEPLINK_2_HOST" value=" " />
+        <variable name="DEEPLINK_3_SCHEME" value=" " />
+        <variable name="DEEPLINK_3_HOST" value=" " />
+        <variable name="DEEPLINK_4_SCHEME" value=" " />
+        <variable name="DEEPLINK_4_HOST" value=" " />
+        <variable name="DEEPLINK_5_SCHEME" value=" " />
+        <variable name="DEEPLINK_5_HOST" value=" " />
+    </plugin>
 </widget>

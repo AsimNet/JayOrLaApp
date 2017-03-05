@@ -20,6 +20,7 @@ import { MyApp } from '../../app/app.component';
   templateUrl: 'vote.html'
 })
 export class VotePage {
+  hashCode: string;
 
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
@@ -31,9 +32,14 @@ export class VotePage {
     public modalCtrl: ModalController,
     public app: App,
     public database: Database) {
-
+    this.hashCode = navParams.get("hashCode");
   }
 
+  ionViewWillEnter() {
+    this.events.getEvent(this.hashCode).subscribe((resp: Response)=>{
+      console.log("VotePage@getEvent: " +resp.json());
+    })
+  }
   ionViewDidLoad() {
     console.log('ionViewDidLoad VotePage');
   }
