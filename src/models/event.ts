@@ -35,7 +35,7 @@ get getEndDate(): number{
 }
 
 get getNotes(): string{
-    return this.name;
+    return this.notes;
 }
 get getHash(): string{
     return this.hash;
