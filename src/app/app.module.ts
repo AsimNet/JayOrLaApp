@@ -73,7 +73,9 @@ export function providers() {
 @NgModule({
   declarations: [declarations(), UtcToDate],
   imports: [
-    IonicModule.forRoot(MyApp),
+    IonicModule.forRoot(MyApp,{
+      mode: 'md'
+    }),
     TranslateModule.forRoot({
       provide: TranslateLoader,
       useFactory: (createTranslateLoader),
