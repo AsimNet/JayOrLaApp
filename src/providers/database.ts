@@ -84,7 +84,7 @@ export class Database {
       createFromLocation: 1
     }).then(() => {
       Database.db.transaction(function (tr) {
-        tr.executeSql("CREATE TABLE if not exists  Event (`id` INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT ,Name text not null,UserId INTEGER not null,EndDate text not null,Notes text not null,Hash text not null, CreatedAt text not null, UpdatedAt text not null, EventId number not null)");
+        tr.executeSql("CREATE TABLE if not exists  Event (`id` INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT ,Name text not null,UserId INTEGER not null,EndDate text not null,Notes text, Hash text not null, CreatedAt text not null, UpdatedAt text not null, EventId number not null)");
       }).then(() => {
 
 
