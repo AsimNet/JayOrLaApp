@@ -1,6 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { Platform, Nav, Config } from 'ionic-angular';
-import { StatusBar, Splashscreen,Deeplinks } from 'ionic-native';
+import { StatusBar, Splashscreen, Deeplinks } from 'ionic-native';
 
 import { SignupPage } from '../pages/signup/signup';
 import { TabsPage } from '../pages/tabs/tabs';
@@ -13,11 +13,13 @@ import { TranslateService } from 'ng2-translate/ng2-translate';
 import { Database } from "../providers/database";
 
 @Component({
-  template: `<ion-nav #content [root]="rootPage"></ion-nav>`
+  template: `<ion-nav #content [root]="rootPage" dir="{{dir}}"></ion-nav>`
 })
 export class MyApp {
-  rootPage ;
+  rootPage;
   public static usersLanguage;
+  public dir: string;
+  public static textDir: string;
 
   @ViewChild(Nav) nav: Nav;
 
@@ -31,18 +33,30 @@ export class MyApp {
     config: Config,
     public storage: Storage,
     public database: Database) {
-    // Set the default language for translation strings, and the current language.
-    translate.setDefaultLang('en');
-    MyApp.usersLanguage = translate.getBrowserCultureLang();
-    translate.use(translate.getBrowserLang());
-    console.log("translate.getBrowserCultureLang(): " + MyApp.usersLanguage + " translate.getBrowserLang(): " + translate.getBrowserLang())
-    translate.get(['BACK_BUTTON_TEXT']).subscribe(values => {
-      config.set('ios', 'backButtonText', values.BACK_BUTTON_TEXT);
-    });
 
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
+      let browserLang = translate.getBrowserLang();
+
+      if (browserLang === 'ar') {
+        MyApp.textDir = "left";
+        this.dir = "rtl";
+
+      } else {
+        MyApp.textDir = "right";
+        this.dir = "ltr";
+      }
+
+      // Set the default language for translation strings, and the current language.
+      translate.setDefaultLang('en');
+      MyApp.usersLanguage = translate.getBrowserCultureLang();
+      translate.use(browserLang);
+      console.log("translate.getBrowserCultureLang(): " + MyApp.usersLanguage + " translate.getBrowserLang(): " + browserLang)
+      translate.get(['BACK_BUTTON_TEXT']).subscribe(values => {
+        config.set('ios', 'backButtonText', values.BACK_BUTTON_TEXT);
+      });
+
       StatusBar.styleDefault();
       Splashscreen.hide();
       this.createDB();
@@ -59,7 +73,7 @@ export class MyApp {
       });
 
     });
-    
+
 
   }
 

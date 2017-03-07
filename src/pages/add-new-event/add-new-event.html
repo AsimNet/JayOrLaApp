@@ -38,7 +38,7 @@
     <h6  ion-text color="notes">{{'NOTICE_ADD_EVENT' | translate}}:<span text-wrap ion-text color="danger"> {{dateTimeString.format("llll")}}</span></h6>
       </ion-item>
       <ion-item>
-        <ion-label floating>{{'NOTES'}}</ion-label>
+        <ion-label floating>{{'NOTES'| translate}}</ion-label>
         <ion-textarea rows="10" [(ngModel)]="notes" name="notes"></ion-textarea>
       </ion-item>
     </form>
