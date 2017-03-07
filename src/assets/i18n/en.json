@@ -8,8 +8,7 @@
   "LOGIN": "Sign in",
   "SIGNUP": "Sign up",
   "SIGNING_UP": "Signing up..",
-  "TAB1_TITLE": "Items",
-  "TAB2_TITLE": "Search",
+  "TAB1_TITLE": "Events",
   "TAB3_TITLE": "Settings",
   "ADD":"Add",
   "ALL_FIELDS_REQUIRED": "Please fill all required Fields",
@@ -17,6 +16,7 @@
   "NO_NETWORK": "Please check your internet connection!",
   "WARNING": "Warning",
   "YOU_WANT_DELETE": "This will DELETE ",
+  "SAVE_BUTTON":"Save",
 
   "MAP_TITLE": "Map",
 
