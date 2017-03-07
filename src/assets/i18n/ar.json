@@ -10,7 +10,7 @@
   "TAB3_TITLE": "إعدادات",
   "ADD":"أضف",
   "ALL_FIELDS_REQUIRED": "قم بتعبئة جميع الحقول المطلوبة رجاء",
-  "BACK_BUTTON_TEXT" : "الخلف",
+  "BACK_BUTTON_TEXT" : "رجوع",
   "DELETE_BUTTON": "حذف",
   "ARE_YOU_SURE": "هل أنت متأكد؟",
   "WARNING": "تحذير",
@@ -18,8 +18,6 @@
   "YOU_WANT_DELETE": "هل أنت متأكد من أنك تريد حذف",
   "CANCEL_BUTTON": "إلغاء",
   "SAVE_BUTTON":"حفظ",
-
-  "MAP_TITLE": "خريطة",
 
   "TUTORIAL_SKIP_BUTTON": "تخطِ",
   "TUTORIAL_CONTINUE_BUTTON": "مستعد", 
