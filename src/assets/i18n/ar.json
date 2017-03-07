@@ -18,7 +18,10 @@
   "YOU_WANT_DELETE": "هل أنت متأكد من أنك تريد حذف",
   "CANCEL_BUTTON": "إلغاء",
   "SAVE_BUTTON":"حفظ",
-
+  "ERROR":"خطأ",
+  "EVENT_DOESNT_EXIST": "لاتوجد مناسبة بهذا العنوان، الرجاء التأكد من الرابط",
+  "DONE_BUTTON": "موافق",
+  
   "TUTORIAL_SKIP_BUTTON": "تخطِ",
   "TUTORIAL_CONTINUE_BUTTON": "مستعد", 
 

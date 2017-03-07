@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, ToastController, LoadingController, ViewController, ModalController, App } from 'ionic-angular';
+import { NavController, NavParams, ToastController, LoadingController, ViewController, ModalController, App, AlertController } from 'ionic-angular';
 import { TranslateService } from 'ng2-translate/ng2-translate';
 import { Events } from '../../providers/events';
 import { User } from '../../models/user';
@@ -35,17 +35,39 @@ export class VotePage {
     public modalCtrl: ModalController,
     public app: App,
     public database: Database,
-    public storage: Storage) {
+    public storage: Storage,
+    public alertCtrl: AlertController,) {
     this.hashCode = navParams.get("hashCode");
   }
 
   ionViewWillEnter() {
     this.events.getEvent(this.hashCode).subscribe((resp: Response) => {
-      let results = resp.json();
-      this.createdBy = results.user_name;
-      this.notes = results.notes;
-      this.endDate = results.end_date;
-      this.eventName = results.name;
+   
+        let results = resp.json();
+        this.createdBy = results.user_name;
+        this.notes = results.notes;
+        this.endDate = results.end_date;
+        this.eventName = results.name;
+
+      
+    },(err)=>{
+      //event doesn't exist!
+
+        let prompt = this.alertCtrl.create({
+          title: this.translate.instant("ERROR"),
+          message: this.translate.instant("EVENT_DOESNT_EXIST"),
+          buttons: [
+            {
+              text: this.translate.instant("DONE_BUTTON"),
+              handler: (data) => {
+                console.log('Saved clicked:' + data.newUserName);
+                //Go back!
+                this.navCtrl.pop();
+              }
+            }
+          ]
+        });
+        prompt.present();
     })
   }
   ionViewDidLoad() {

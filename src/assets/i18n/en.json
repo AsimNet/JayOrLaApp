@@ -17,7 +17,10 @@
   "WARNING": "Warning",
   "YOU_WANT_DELETE": "This will DELETE ",
   "SAVE_BUTTON":"Save",
-
+  "ERROR": "ERROR",
+  "EVENT_DOESNT_EXIST": "Event not found, please check your URL",
+  "DONE_BUTTON": "DONE",
+  
   "TUTORIAL_SKIP_BUTTON" : "Skip",
   "TUTORIAL_CONTINUE_BUTTON" : "I'm ready",
 
