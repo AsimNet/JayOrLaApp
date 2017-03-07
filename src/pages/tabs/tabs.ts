@@ -32,10 +32,9 @@ export class TabsPage {
 
   ionViewWillEnter() {
     this.platform.ready().then(() => {
-
-      console.log("CAME BACK!")
       if (HomePage.eventsList) {
         console.log("HELLO");
+        //this for updating eventsList.
         //if it's first time, don't do anything!
         this.database.getEvents().then((data) => {
           HomePage.eventsList = data;

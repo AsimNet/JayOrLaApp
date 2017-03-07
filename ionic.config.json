@@ -1,9 +1,9 @@
 {
   "name": "myApp",
-  "app_id": "",
+  "app_id": "ad798d2b",
   "v2": true,
   "typescript": true,
-    "proxies": [
+  "proxies": [
     {
       "path": "*",
       "proxyUrl": "https://jayorla.xyz"

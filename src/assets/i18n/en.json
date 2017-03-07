@@ -33,15 +33,6 @@
 
   "WELCOME_INTRO" : "The starting point for your next great Ionic app",
 
-  "SETTINGS_TITLE": "Settings",
-  "SETTINGS_OPTION1": "Option 1",
-  "SETTINGS_OPTION2": "Option 2",
-  "SETTINGS_OPTION3": "Option 3",
-  "SETTINGS_OPTION4": "Option 4",
-
-  "SETTINGS_PROFILE_BUTTON" : "Edit Profile",
-
-  "SETTINGS_PAGE_PROFILE": "Edit Profile",
 
   "WELCOME_TITLE": "Welcome",
 
@@ -89,8 +80,15 @@
 
     "VOTE_PAGE_TITLE": "Event details",
     "ATTENDERS_NAME": "Created by",
-    "VOTING": "Adding..."
+    "VOTING": "Adding...",
 
+  "SETTINGS_TITLE": "Settings",
+  "CHANGE_YOUR_NAME":"CHANGE YOUR NAME",
+  "TYPE_NEW_NAME": "Will be displayed when you create Or confirm on an event",
+  "PROFILE": "PROFILE",
+  "PREMIUM": "PREMIUM",
+  "SUPPORT": "SUPPORT",
+  "RESTORE_PURCHASE": "RESTORE PURCHASE"
 
 
 }

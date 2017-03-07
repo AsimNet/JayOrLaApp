@@ -16,7 +16,7 @@ import { Database } from "../providers/database";
   template: `<ion-nav #content [root]="rootPage"></ion-nav>`
 })
 export class MyApp {
-  rootPage;
+  rootPage ;
   public static usersLanguage;
 
   @ViewChild(Nav) nav: Nav;
@@ -59,6 +59,7 @@ export class MyApp {
       });
 
     });
+    
 
   }
 

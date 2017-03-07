@@ -1,0 +1,68 @@
+<!--
+  Generated template for the Settings page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color="light">
+    <ion-title>settings</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+  <ion-list>
+    <ion-list-header>
+      {{'PROFILE'| translate}}
+    </ion-list-header>
+      
+      <button  ion-item detail-none (click)="changeUserName()">
+      <ion-icon name="person" item-left></ion-icon>
+      {{userAccount.name}}
+      </button>
+
+    <ion-list-header>
+      {{'PREMIUM'| translate}}
+    </ion-list-header>
+    <button ion-item detail-none>
+      <ion-icon name="cash" item-left></ion-icon>
+      Invite till 100 users
+      <h6 item-right>$2</h6>
+    </button>
+
+    <button ion-item detail-none>
+      <ion-icon name="cash" item-left></ion-icon>
+      Invite till 200 users
+      <h6 item-right>$3</h6>
+    </button>
+
+    <button ion-item detail-none>
+      <ion-icon name="cash" item-left></ion-icon>
+      Invite unlimited users
+      <h6 item-right>$5</h6>
+      </button>
+
+    <ion-list-header>
+      {{'SUPPORT' | translate}}
+    </ion-list-header>
+
+    <button ion-item detail-none (click)="twitterAccount()">
+      <ion-icon name="logo-twitter" item-left></ion-icon>
+      @JayOrLa
+      </button>
+
+    <button ion-item detail-none (click)="emailSupport()">
+     <ion-icon name="mail" item-left ></ion-icon>
+      Support@JayOrLa.xyz
+    </button>
+
+    <button ion-item detail-none (click)="restorePurchase()">
+          <ion-icon name="sync" item-left></ion-icon>
+      {{'RESTORE_PURCHASE'}}
+      </button>
+
+  </ion-list>
+</ion-content>
