@@ -23,11 +23,26 @@ export class User {
   }
 
 
-    /**
-   * Process a login/signup response to store user data
-   */
-  _loggedIn(resp) {
-    this._user = resp.user;
+  /**
+ * changing userName
+ */
+  changeUserName(userHashAndName: any) {
+    let seq = this.api.post('changeName', {
+      hash: userHashAndName.hash,
+      new_user_name: userHashAndName.name
+    }).share();
+
+    seq
+      .map(res => res.json())
+      .subscribe(res => {
+        // If the API returned a successful response, mark the user as logged in
+        console.log(res);
+
+      }, err => {
+        console.error('ERROR', err);
+      });
+
+    return seq;
   }
 
 }

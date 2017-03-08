@@ -94,7 +94,7 @@ console.log(res);
   }
 
   getAllParticipantToEvent(event: Event) {
-    let seq = this.api.get('event/' + event.getEventId).share();
+    let seq = this.api.get('event/' + event.getHash).share();
     console.log(seq);
     seq
       .map(res => res.json())

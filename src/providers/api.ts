@@ -13,21 +13,21 @@ export class Api {
 
 
 
-get(endpoint: string) {
-      let options = new RequestOptions();
+  get(endpoint: string) {
+    let options = new RequestOptions();
 
     return this.http.get(this.url + '/' + endpoint, options);
   }
 
-    post(endpoint: string, body: any) {
-     let headers = new Headers({ 'Content-Type': 'application/json' });
-      let options = new RequestOptions({ headers: headers });
+  post(endpoint: string, body: any) {
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let options = new RequestOptions({ headers: headers });
 
     return this.http.post(this.url + '/' + endpoint, body, options);
   }
 
-   handleError(error) {
-        console.error(error);
-        return Observable.throw(error.json().error || 'Server error');
-    }
+  handleError(error) {
+    console.error(error);
+    return Observable.throw(error.json().error || 'Server error');
+  }
 }

@@ -19,7 +19,6 @@ export class MyApp {
   rootPage;
   public static usersLanguage;
   public dir: string;
-  public static textDir: string;
 
   @ViewChild(Nav) nav: Nav;
 
@@ -40,11 +39,9 @@ export class MyApp {
       let browserLang = translate.getBrowserLang();
 
       if (browserLang === 'ar') {
-        MyApp.textDir = "left";
         this.dir = "rtl";
 
       } else {
-        MyApp.textDir = "right";
         this.dir = "ltr";
       }
 

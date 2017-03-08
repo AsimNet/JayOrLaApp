@@ -5,6 +5,7 @@ import { TranslateService } from 'ng2-translate/ng2-translate';
 import { Storage } from '@ionic/storage';
 import { SignupPage } from '../signup/signup'
 import { SocialSharing } from 'ionic-native'
+import { User } from '../../providers/user'
 /*
   Generated class for the Settings page.
 
@@ -16,7 +17,7 @@ import { SocialSharing } from 'ionic-native'
   templateUrl: 'settings.html'
 })
 export class SettingsPage {
-  userAccount: { name: string } = { name: " " };
+  userAccount: { name: string, hash: string } = { name: " ", hash: " " };
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
     public app: App,
@@ -24,7 +25,8 @@ export class SettingsPage {
     public alertCtrl: AlertController,
     public database: Database,
     public platform: Platform,
-    public storage: Storage) {
+    public storage: Storage,
+    public userAPI: User) {
     this.storage.get(SignupPage.ACCOUNT_KEY).then((userObj) => {
       this.userAccount = userObj;
     })
@@ -35,12 +37,8 @@ export class SettingsPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad SettingsPage');
   }
-  ionViewWillLeave() {
-    this.storage.set(SignupPage.ACCOUNT_KEY, this.userAccount);
-  }
 
   changeUserName() {
-    console.log("Hello my new name is: " + this.userAccount.name);
 
     let prompt = this.alertCtrl.create({
       title: this.translate.instant("CHANGE_YOUR_NAME"),
@@ -63,10 +61,22 @@ export class SettingsPage {
           handler: (data) => {
             console.log('Saved clicked:' + data.newUserName);
             //call API to change the name first, then change it locally!.
+            this.userAccount.name = data.newUserName;
+            this.userAPI.changeUserName(this.userAccount).subscribe((resp) => {
+              //status: 200 OK
+              console.log("Hello my new name is: " + this.userAccount.name);
+              console.log("Hello my hash is: " + this.userAccount.hash);
 
-            this.storage.set(SignupPage.ACCOUNT_KEY, data.newUserName).then(() => {
-              this.userAccount.name = data.newUserName;
-            });
+              //save the name into local database
+              this.storage.set(SignupPage.ACCOUNT_KEY, this.userAccount).then(() => {
+
+
+              });
+            }, (err) => {
+
+
+            })
+
 
           }
         }
