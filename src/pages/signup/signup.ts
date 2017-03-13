@@ -7,6 +7,7 @@ import { TabsPage } from '../tabs/tabs';
 import { User } from '../../providers/user';
 import { Storage } from '@ionic/storage'
 import { Response } from '@angular/http';
+import { Device } from 'ionic-native';
 
 @Component({
   selector: 'page-signup',
@@ -16,9 +17,10 @@ export class SignupPage {
   // The account fields for the login form.
   // If you're using the username field with or without email, make
   // sure to add it to the type
-  account: { name: string, hash: string } = {
+  account: { name: string, hash: string, uuid: string } = {
     name: '',
-    hash: ''
+    hash: '',
+    uuid: ''
   };
 
   public static readonly ACCOUNT_KEY = 'ACCOUNT';
@@ -52,7 +54,9 @@ export class SignupPage {
         this.user.signup(accountJsoned).subscribe((resp: Response) => {
 
           let results = resp.json();
-
+          //getting uuid and assign it with user Object.
+          results.uuid = Device.uuid;
+          
           if (resp.status == 200) {
             loader.dismiss();
 

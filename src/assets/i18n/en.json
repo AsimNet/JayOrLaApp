@@ -18,9 +18,8 @@
   "YOU_WANT_DELETE": "This will DELETE ",
   "SAVE_BUTTON":"Save",
   "ERROR": "ERROR",
-  "EVENT_DOESNT_EXIST": "Event not found, please check your URL",
-  "DONE_BUTTON": "DONE",
-  
+  "EVENT_DOESNT_EXIST": "This event is deleted or doesn't exist!",
+    
   "TUTORIAL_SKIP_BUTTON" : "Skip",
   "TUTORIAL_CONTINUE_BUTTON" : "I'm ready",
 
@@ -89,7 +88,8 @@
   "PROFILE": "PROFILE",
   "PREMIUM": "PREMIUM",
   "SUPPORT": "SUPPORT",
-  "RESTORE_PURCHASE": "RESTORE PURCHASE"
+  "RESTORE_PURCHASE": "RESTORE PURCHASE",
+  "WAIT": "Wait.."
 
 
 }

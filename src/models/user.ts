@@ -11,7 +11,9 @@ export class User {
               public created_at?: string,
               public updatedAt?: string,
               public ip?: string,
-              public event_id?: number  ) {
+              public event_id?: number,
+              public userHash?: string
+                ) {
 
 
               }
@@ -25,5 +27,8 @@ get getId(): number{
 }
 get getIsComing(): boolean{
     return this.isComing;
+}
+get getUserHash(): string{
+    return this.userHash;
 }
 }

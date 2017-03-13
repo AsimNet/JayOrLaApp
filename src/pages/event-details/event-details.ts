@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, LoadingController, ToastController } from 'ionic-angular';
+import { NavController, NavParams, LoadingController, ToastController, AlertController } from 'ionic-angular';
 import { Events } from '../../providers/events'
 import { TranslateService } from 'ng2-translate/ng2-translate';
 import { User } from '../../models/user'
@@ -27,7 +27,8 @@ export class EventDetailsPage {
     public loadingCtrl: LoadingController,
     public toastCtrl: ToastController,
     public events: Events,
-    public translate: TranslateService) {
+    public translate: TranslateService,
+    public altCtrl: AlertController) {
 
     this.event = navParams.get("event");
   }
@@ -67,6 +68,20 @@ export class EventDetailsPage {
         });
         this.loader.dismiss();
         this.updateList();
+      }, (err) => {
+        //the event somehow was deleted, and still in user interface. so, show him an erro!.
+        this.loader.dismiss();
+        let alert = this.altCtrl.create({
+          title: this.translate.instant("ERROR"),
+          message: this.translate.instant("EVENT_DOESNT_EXIST"),
+          buttons: [{
+            text: this.translate.instant("CANCEL_BUTTON"),
+            handler: ()=>{
+              this.navCtrl.pop();
+            }
+          }]
+        })
+        alert.present();
       })
       console.log(this.usersList);
       this.updateList();
@@ -87,8 +102,8 @@ export class EventDetailsPage {
     console.log('ionViewDidLoad EventDetailsPage');
   }
   shareEvent() {
-    let url:string = "https://JayOrLa.xyz/participate/" + this.event.hash;
-    SocialSharing.share(url, 'JayOrLa',null,null);
+    let url: string = "https://JayOrLa.xyz/participate/" + this.event.hash;
+    SocialSharing.share(url, 'JayOrLa', null, null);
 
   }
 }

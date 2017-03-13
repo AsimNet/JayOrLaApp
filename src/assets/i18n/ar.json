@@ -19,7 +19,7 @@
   "CANCEL_BUTTON": "إلغاء",
   "SAVE_BUTTON":"حفظ",
   "ERROR":"خطأ",
-  "EVENT_DOESNT_EXIST": "لاتوجد مناسبة بهذا العنوان، الرجاء التأكد من الرابط",
+  "EVENT_DOESNT_EXIST": "لا توجد مناسبة بهذا العنوان",
   "DONE_BUTTON": "موافق",
   
   "TUTORIAL_SKIP_BUTTON": "تخطِ",
@@ -73,5 +73,6 @@
   "PROFILE": "الملف الشخصي",
   "PREMIUM": "الإضافات",
   "SUPPORT": "الدعم الفني",
-  "RESTORE_PURCHASE": "إستعادة المشتريات"
+  "RESTORE_PURCHASE": "إستعادة المشتريات",
+  "WAIT": "...فضلا انتظر"
 }

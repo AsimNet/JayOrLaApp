@@ -4,19 +4,12 @@ import { Api } from './api';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/toPromise';
 import { Event } from '../models/event'
-import { User } from '../models/user';
+import { User } from '../models/user'
 
 @Injectable()
 export class Events {
-  _user: any;
 
   constructor(public http: Http, public api: Api) {
-  }
-
-
-
-  delete(event: Event) {
-
   }
 
 
@@ -72,11 +65,12 @@ export class Events {
     return seq;
   }
 
-  participate(user: User, hashCode: string) {
+  participate(user, hashCode: string) {
     let seq = this.api.post('participate', {
-      name: user.getName,
-      is_coming: user.getIsComing,
-      hash: hashCode
+      name: user.name,
+      is_coming: user.isComing,
+      hash: hashCode,
+      uuid: user.uuid
     }).share();
 
     seq
@@ -113,4 +107,31 @@ console.log(res);
     return seq;
   }
 
+  /**
+   * Send a DELETE request to our Event endpoint with the event's hash you want to delete!
+   * 
+   */
+  deleteEvent(event: Event, user) {
+    //get User_hash
+    console.log(event.getHash + " "+ user.hash);
+    let body = {
+      event_hash: event.getHash,
+      user_hash: user.hash
+    }
+
+    let seq = this.api.delete('event', body).share();
+
+    seq
+      .map(res => res.json())
+      .subscribe(res => {
+        // If the API returned a successful response, mark the user as logged in
+        if (res.status == 'success') {
+
+        }
+      }, err => {
+        console.error('ERROR', err);
+      });
+
+    return seq;
+  }
 }

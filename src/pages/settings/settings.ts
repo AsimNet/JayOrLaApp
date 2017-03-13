@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, Platform, AlertController, App } from 'ionic-angular';
+import { NavController, NavParams, Platform, AlertController, App, LoadingController } from 'ionic-angular';
 import { Database } from '../../providers/database';
 import { TranslateService } from 'ng2-translate/ng2-translate';
 import { Storage } from '@ionic/storage';
@@ -26,7 +26,8 @@ export class SettingsPage {
     public database: Database,
     public platform: Platform,
     public storage: Storage,
-    public userAPI: User) {
+    public userAPI: User,
+    public loadingCtrl: LoadingController) {
     this.storage.get(SignupPage.ACCOUNT_KEY).then((userObj) => {
       this.userAccount = userObj;
     })
@@ -59,13 +60,21 @@ export class SettingsPage {
         {
           text: this.translate.instant("SAVE_BUTTON"),
           handler: (data) => {
+            let loader = this.loadingCtrl.create({
+              content: this.translate.instant("WAIT"),
+            });
+            loader.present();
+
             console.log('Saved clicked:' + data.newUserName);
             //call API to change the name first, then change it locally!.
-            this.userAccount.name = data.newUserName;
             this.userAPI.changeUserName(this.userAccount).subscribe((resp) => {
               //status: 200 OK
               console.log("Hello my new name is: " + this.userAccount.name);
+              //hide loader:
+              loader.dismiss();
+
               console.log("Hello my hash is: " + this.userAccount.hash);
+              this.userAccount.name = data.newUserName;
 
               //save the name into local database
               this.storage.set(SignupPage.ACCOUNT_KEY, this.userAccount).then(() => {
@@ -73,6 +82,7 @@ export class SettingsPage {
 
               });
             }, (err) => {
+              loader.dismiss();
 
 
             })

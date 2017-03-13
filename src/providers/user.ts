@@ -7,8 +7,6 @@ import 'rxjs/add/operator/toPromise';
 
 @Injectable()
 export class User {
-  _user: any;
-
   constructor(public http: Http, public api: Api) {
   }
 
@@ -44,5 +42,5 @@ export class User {
 
     return seq;
   }
-
+  
 }

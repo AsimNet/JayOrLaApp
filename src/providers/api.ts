@@ -26,6 +26,11 @@ export class Api {
     return this.http.post(this.url + '/' + endpoint, body, options);
   }
 
+  delete(endpoint: string, body: any) {
+    return this.http.delete(this.url + '/' + endpoint, {
+      body: body,
+      method: 3});
+  }
   handleError(error) {
     console.error(error);
     return Observable.throw(error.json().error || 'Server error');
