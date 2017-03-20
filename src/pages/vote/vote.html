@@ -15,19 +15,25 @@
 
 <ion-content no-bounce>
   <div class="roundedDev">
+    <ion-card>
+      <ion-card-header>
+        {{eventName}}
+      </ion-card-header>
+      <ion-card-content>
+        {{notes}}
+        <br>
+        <h5 class="mainText">{{endDate | UnixToTime}}</h5>
+        <h6 class="noLines">{{createdBy }}</h6>
+      </ion-card-content>
+    </ion-card>
 
-    <h5 class="noLines mainText">{{'ATTENDERS_NAME'| translate}}: </h5>
-    <h6 class="noLines">{{createdBy }}</h6>
-    <h5 class="mainText">{{endDate | UnixToTime}}</h5>
-    <h5 class="mainText">{{'NOTES'| translate}}:</h5>
-    <textarea class="textarea" [disabled]="true">{{notes}} </textarea>
     <div class="container">
 
       <button [disabled]="datePassed == false" ion-button class="buttons" (click)="coming(true)" icon-left>
-          <ion-icon [hidden]="willCome == false" name="checkmark-circle"></ion-icon>
+          <ion-icon *ngIf="willCome === 'true'" name="checkmark-circle"></ion-icon>
         {{'WILL_COME'| translate}}</button>
-      <button ion-button [disabled]="datePassed == false"  color="danger" class="buttons" (click)="coming(false)" icon-left>
-                    <ion-icon [hidden]="willCome == true" name="checkmark-circle"></ion-icon>
+      <button ion-button [disabled]="datePassed == false" color="danger" class="buttons" (click)="coming(false)" icon-left>
+        <ion-icon *ngIf="willCome === 'false'" name="checkmark-circle"></ion-icon>
           {{'WONT_COME'| translate}}</button>
     </div>
   </div>

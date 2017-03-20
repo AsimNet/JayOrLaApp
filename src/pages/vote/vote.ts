@@ -26,7 +26,7 @@ export class VotePage {
   notes: string;
   endDate: string;
   eventName: string;
-  willCome: boolean = false;
+  willCome: string;
   datePassed: boolean = false;
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
@@ -59,8 +59,10 @@ export class VotePage {
         this.notes = results.notes;
         this.endDate = results.end_date;
         this.eventName = results.name;
-        this.willCome = results.participants[0].is_coming;
+        if(results.participants.length > 0){
+        this.willCome = String(results.participants[0].is_coming);
         console.log(results.participants[0].is_coming);
+        }
         console.log(JSON.stringify(results));
 
         console.log(moment(this.endDate).unix() + " > " + moment().unix());
@@ -113,7 +115,7 @@ export class VotePage {
           //here user clicked on either willCome button or wontCome.
 
           this.events.participate(userDB, this.hashCode).subscribe((resp) => {
-            this.willCome = isIt;
+            this.willCome = String(isIt);
 
           }, (err) => {
             // error
