@@ -56,12 +56,14 @@ export class SignupPage {
           let results = resp.json();
           //getting uuid and assign it with user Object.
           results.uuid = Device.uuid;
-          
+
           if (resp.status == 200) {
             loader.dismiss();
 
             this.storage.set(SignupPage.ACCOUNT_KEY, results).then(() => {
               console.log("resp status: " + results);
+             
+              (<any>window).fabric.Answers.sendSignUp("Name",true,results);
               this.navCtrl.setRoot(TabsPage, {}, {
                 animate: true,
                 direction: 'forward'

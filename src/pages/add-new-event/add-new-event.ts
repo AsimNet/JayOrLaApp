@@ -27,7 +27,7 @@ import { MyApp } from '../../app/app.component';
 
 export class AddNewEventPage {
   notes;
-  dateTime = moment().format();
+  dateTime = moment().locale('en').format();
   title;
   dateTimeString = moment(this.dateTime);
   private addEventError: string;
@@ -45,7 +45,7 @@ export class AddNewEventPage {
     public database: Database) {
     this.translate.get('ADD_EVENT_ERROR').subscribe((value) => {
       this.addEventError = value;
-
+console.log(this.dateTime)
     })
     this.dateTimeString.locale(MyApp.usersLanguage);
 
@@ -73,8 +73,8 @@ export class AddNewEventPage {
       if (Network.type !== 'none') {
 
         this.storage.get(SignupPage.ACCOUNT_KEY).then((user) => {
-          console.log(moment(this.dateTime).format('X'));
-          let end_time = moment(this.dateTime).format('X');
+          console.log(moment(this.dateTime).unix());
+          let end_time = moment(this.dateTime).unix();
           let event = new Event(this.title, Number(user.id), Number(end_time), this.notes);
           this.events.addEvent(event).subscribe((resp: Response) => {
             //event created successfully

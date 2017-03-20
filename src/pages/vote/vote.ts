@@ -2,13 +2,14 @@ import { Component } from '@angular/core';
 import { NavController, NavParams, ToastController, LoadingController, ViewController, ModalController, App, AlertController } from 'ionic-angular';
 import { TranslateService } from 'ng2-translate/ng2-translate';
 import { Events } from '../../providers/events';
-import { User } from '../../models/user';
 import { Response } from '@angular/http';
 import { Network } from 'ionic-native'
 import { Database } from "../../providers/database";
 import 'moment/locale/ar-SA';
 import { Storage } from '@ionic/storage';
 import { SignupPage } from '../signup/signup'
+import * as moment from 'moment';
+
 /*
   Generated class for the Vote page.
 
@@ -25,6 +26,8 @@ export class VotePage {
   notes: string;
   endDate: string;
   eventName: string;
+  willCome: boolean = false;
+  datePassed: boolean = false;
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
     public translate: TranslateService,
@@ -45,38 +48,49 @@ export class VotePage {
       content: this.translate.instant("GETTING_DETAILS"),
     });
     loader.present();
-    this.events.getEvent(this.hashCode).subscribe((resp: Response) => {
-      //hide the loader: 
-      loader.dismiss();
+    this.storage.get(SignupPage.ACCOUNT_KEY).then((userDB) => {
 
-      let results = resp.json();
-      this.createdBy = results.user_name;
-      this.notes = results.notes;
-      this.endDate = results.end_date;
-      this.eventName = results.name;
+      this.events.getEvent(this.hashCode, userDB).subscribe((resp: Response) => {
+        //hide the loader: 
+        loader.dismiss();
+
+        let results = resp.json();
+        this.createdBy = results.user_name;
+        this.notes = results.notes;
+        this.endDate = results.end_date;
+        this.eventName = results.name;
+        this.willCome = results.participants[0].is_coming;
+        console.log(results.participants[0].is_coming);
+        console.log(JSON.stringify(results));
+
+        console.log(moment(this.endDate).unix() + " > " + moment().unix());
+
+        this.datePassed = moment(this.endDate).unix() > (moment().unix()/1000);
+        console.log(this.datePassed);
 
 
-    }, (err) => {
-       //hide the loader: 
-      loader.dismiss();
-      
-      //event doesn't exist!
+      }, (err) => {
+        //hide the loader: 
+        loader.dismiss();
 
-      let prompt = this.alertCtrl.create({
-        title: this.translate.instant("ERROR"),
-        message: this.translate.instant("EVENT_DOESNT_EXIST"),
-        buttons: [
-          {
-            text: this.translate.instant("DONE_BUTTON"),
-            handler: (data) => {
-              console.log('Saved clicked:' + data.newUserName);
-              //Go back!
-              this.navCtrl.pop();
+        //event doesn't exist!
+
+        let prompt = this.alertCtrl.create({
+          title: this.translate.instant("ERROR"),
+          message: this.translate.instant("EVENT_DOESNT_EXIST"),
+          buttons: [
+            {
+              text: this.translate.instant("DONE_BUTTON"),
+              handler: (data) => {
+                console.log('Saved clicked:' + data.newUserName);
+                //Go back!
+                this.navCtrl.pop();
+              }
             }
-          }
-        ]
-      });
-      prompt.present();
+          ]
+        });
+        prompt.present();
+      })
     })
   }
   ionViewDidLoad() {
@@ -91,16 +105,51 @@ export class VotePage {
 
     if (Network.type !== 'none') {
       //get User Object from Storage.
-      this.storage.get(SignupPage.ACCOUNT_KEY).then((userDB) => {
-        userDB.isComing = isIt;
-        console.log("userDB: " + JSON.stringify(userDB));
-        loader.dismiss();
-        //here user clicked on either willCome button or wontCome.
-        this.events.participate(userDB, this.hashCode).subscribe((resp) => {
-          console.log(resp.json());
-        }, (err) => {
-          // error
+      try {
+        this.storage.get(SignupPage.ACCOUNT_KEY).then((userDB) => {
+          userDB.isComing = isIt;
+          console.log("userDB: " + JSON.stringify(userDB));
           loader.dismiss();
+          //here user clicked on either willCome button or wontCome.
+
+          this.events.participate(userDB, this.hashCode).subscribe((resp) => {
+            this.willCome = isIt;
+
+          }, (err) => {
+            // error
+            loader.dismiss();
+            if (err.status == 410) {
+              // the date passed away
+              let prompt = this.alertCtrl.create({
+                title: this.translate.instant("ERROR"),
+                message: this.translate.instant("EVENT_OVERDUE"),
+                buttons: [
+                  {
+                    text: this.translate.instant("DONE_BUTTON"),
+                    handler: (data) => {
+                      console.log('Saved clicked:' + data.newUserName);
+                      //Go back!
+                      this.navCtrl.pop();
+                    }
+                  }
+                ]
+              });
+              prompt.present();
+            } else {
+              let toast = this.toastCtrl.create({
+                message: err.message,
+                duration: 3000,
+                position: 'top'
+              });
+              toast.present();
+              console.log("HELLLO ERROR");
+            }
+          });
+
+        }).catch((err) => {
+          loader.dismiss();
+
+
           let toast = this.toastCtrl.create({
             message: err.message,
             duration: 3000,
@@ -108,18 +157,14 @@ export class VotePage {
           });
           toast.present();
 
-        });
-      }).catch((err) => {
+        })
+      } catch (err) {
         loader.dismiss();
-        let toast = this.toastCtrl.create({
-          message: err.message,
-          duration: 3000,
-          position: 'top'
-        });
-        toast.present();
-      })
 
+        console.log(err + "rewewewerwrew");
+      }
     } else {
+      loader.dismiss();
       // no internet conncetion!
       let toast = this.toastCtrl.create({
         message: this.translate.instant("NO_NETWORK"),

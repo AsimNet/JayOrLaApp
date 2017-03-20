@@ -15,11 +15,14 @@ import { EventDetailsPage } from '../pages/event-details/event-details';
 import { VotePage } from '../pages/vote/vote';
 import { SettingsPage } from '../pages/settings/settings';
 
+import {Analytics} from "../providers/analytics";
+import { FabricErrorHandler } from '../providers/FabricErrorHandler'
 import { User } from '../providers/user';
 import { Api } from '../providers/api';
 import { Events } from '../providers/events';
 import { Database } from "../providers/database";
 import {UtcToDate} from '../pipes/utc-to-date';
+import {UnixToTime} from '../pipes/unix-to-time';
 
 
 import { TranslateModule, TranslateLoader, TranslateStaticLoader } from 'ng2-translate/ng2-translate';
@@ -60,18 +63,18 @@ export function entryComponents() {
 export function providers() {
   return [
     Storage,
-
+    Analytics,
     Events,
     User,
     Api,
     Database,
     // Keep this to enable Ionic's runtime error handling during development
-    { provide: ErrorHandler, useClass: IonicErrorHandler }
+    { provide: ErrorHandler, useClass: FabricErrorHandler }
   ];
 }
 
 @NgModule({
-  declarations: [declarations(), UtcToDate],
+  declarations: [declarations(), UtcToDate,UnixToTime],
   imports: [
     IonicModule.forRoot(MyApp,{
       mode: 'md'

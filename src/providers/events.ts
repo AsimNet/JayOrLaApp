@@ -4,12 +4,12 @@ import { Api } from './api';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/toPromise';
 import { Event } from '../models/event'
-import { User } from '../models/user'
-
+import { Storage } from '@ionic/storage'
+import { SignupPage } from '../pages/signup/signup'
 @Injectable()
 export class Events {
 
-  constructor(public http: Http, public api: Api) {
+  constructor(public http: Http, public api: Api, public storage: Storage) {
   }
 
 
@@ -22,7 +22,7 @@ export class Events {
       event: event.getName,
       user_id: event.getUser_id,
       end_date: event.getEndDate,
-      notes:event.getNotes
+      notes: event.getNotes
     }
     let seq = this.api.post('event', enhancedEventObj).share();
 
@@ -45,43 +45,50 @@ export class Events {
    * GET request to our event endpoint with the hash
    * that we pbtained when the user select an event from the list on the first page.
    */
-  getEvent(hash: string) {
-    let seq = this.api.get('event2/' + hash).share();
-    console.log(seq);
-    seq
-      .map(res => res.json())
-      .subscribe(res => {
-        // If the API returned a successful response, mark the user as logged in
+  getEvent(hash: string,user) {
 
-        console.log(JSON.stringify(res));
-        console.log(res["name"])
-        if (res.status == 'success') {
+      console.log(JSON.stringify(user));
+      let seq = this.api.get('event2/' + hash + "?uuid=" + user.uuid).share();
+      console.log(seq);
+      seq
+        .map(res => res.json())
+        .subscribe(res => {
+          // If the API returned a successful response, mark the user as logged in
 
-        }
-      }, err => {
-        console.error('ERROR: ', err);
-      });
+          console.log(JSON.stringify(res));
+          if (res["participants"].length >= 1) {
+          }
+          if (res.status == 'success') {
+
+          }
+        }, err => {
+          console.error('ERROR: ', err);
+        });
+
+
+
 
     return seq;
+
   }
 
   participate(user, hashCode: string) {
-    let seq = this.api.post('participate', {
+    let enhancedEventObj = {
       name: user.name,
       is_coming: user.isComing,
       hash: hashCode,
       uuid: user.uuid
-    }).share();
+    }
+    console.log("participate()"+hashCode+" : user: "+ JSON.stringify(user))
+    let seq = this.api.post('participate',enhancedEventObj).share();
 
     seq
-      .map(res => res.json())
+      .map(res => res.text())
       .subscribe(res => {
         // If the API returned a successful response, mark the user as logged in
-        if (res.status === 'success') {
-console.log(res);
-        }
+    
       }, err => {
-        console.error('ERROR', err);
+        console.error('ERROR::: ', err);
       });
 
     return seq;
@@ -113,7 +120,7 @@ console.log(res);
    */
   deleteEvent(event: Event, user) {
     //get User_hash
-    console.log(event.getHash + " "+ user.hash);
+    console.log(event.getHash + " " + user.hash);
     let body = {
       event_hash: event.getHash,
       user_hash: user.hash
