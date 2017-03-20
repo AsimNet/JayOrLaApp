@@ -1,12 +1,11 @@
 import { NgModule, ErrorHandler } from '@angular/core';
 import { Http } from '@angular/http';
-import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
+import { IonicApp, IonicModule } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 
 import { MyApp } from './app.component';
 
 import { SignupPage } from '../pages/signup/signup';
-import { TabsPage } from '../pages/tabs/tabs';
 import { TutorialPage } from '../pages/tutorial/tutorial';
 import { HomePage } from '../pages/home/home';
 import { AddNewEventPage } from '../pages/add-new-event/add-new-event';
@@ -42,7 +41,6 @@ export function createTranslateLoader(http: Http) {
 let pages = [
   MyApp,
   SignupPage,
-  TabsPage,
   TutorialPage,
   HomePage,
   AddNewEventPage,

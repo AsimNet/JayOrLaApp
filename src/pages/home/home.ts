@@ -8,6 +8,8 @@ import { TranslateService } from 'ng2-translate/ng2-translate';
 import { EventDetailsPage } from '../event-details/event-details'
 import { Storage } from '@ionic/storage'
 import { SignupPage } from '../signup/signup'
+import { SettingsPage } from '../settings/settings'
+
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
@@ -43,10 +45,19 @@ export class HomePage {
   ionViewWillEnter() {
     // this.loadEventsList();
     console.log("CAME BACK!");
+        this.platform.ready().then(() => {
+      if (HomePage.eventsList) {
+        console.log("HELLO");
+        //this for updating eventsList.
+        //if it's first time, don't do anything!
+        this.database.getEvents().then((data) => {
+          HomePage.eventsList = data;
+        })
+      }
+    });
   }
   addNewEvent() {
-    let nav = this.app.getRootNav();
-    nav.push(AddNewEventPage);
+    this.navCtrl.push(AddNewEventPage);
   }
 
   open(event: Event) {
@@ -105,5 +116,9 @@ export class HomePage {
       }]
     });
     alert.present();
+  }
+
+  openSettings() {
+    this.navCtrl.push(SettingsPage);
   }
 }

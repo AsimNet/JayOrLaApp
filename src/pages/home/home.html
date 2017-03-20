@@ -1,9 +1,9 @@
 <ion-header>
   <ion-navbar color="light">
     <ion-title>{{'APP_NAME'| translate}}</ion-title>
-  <ion-buttons end>
-      <button ion-button icon-only (click)="addNewEvent()">
-        <ion-icon name="add" tappable></ion-icon>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="openSettings()">
+        <ion-icon name="settings" tappable></ion-icon>
       </button>
     </ion-buttons>
   </ion-navbar>
@@ -11,23 +11,29 @@
 
 <ion-content no-bounce>
   <div *ngIf="eventsList.length == 0" class="NoContent">
-  <img  src="https://api.adorable.io/avatars/1000/anga.png" >
+    <img src="https://api.adorable.io/avatars/1000/anga.png">
   </div>
- <ion-list no-lines>
-  <ion-item-sliding *ngFor="let event of eventsList">
-    <ion-item color="primary" (click)="open(event)">
-      <ion-avatar item-left>
-        <img src="https://api.adorable.io/avatars/193/{{event.getName}}.png">
-      </ion-avatar>
-      <h2>{{event.getName}}</h2>
-      <h6>{{event.getEndDate | utcToDate}}</h6>
-        </ion-item>
-          <ion-item-options side="right">
-      <button ion-button color="danger" (click)="delete(event)">
+  <ion-list no-lines>
+    <ion-item-sliding *ngFor="let event of eventsList">
+      <ion-item color="primary" (click)="open(event)">
+        <ion-avatar item-left>
+          <img src="https://api.adorable.io/avatars/193/{{event.getName}}.png">
+        </ion-avatar>
+        <h2>{{event.getName}}</h2>
+        <h6>{{event.getEndDate | utcToDate}}</h6>
+      </ion-item>
+      <ion-item-options side="right">
+        <button ion-button color="danger" (click)="delete(event)">
         <ion-icon name="trash"></ion-icon>
         {{'DELETE'| translate}}
       </button>
-    </ion-item-options>
-  </ion-item-sliding>
-</ion-list>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
+
+  <ion-fab right bottom>
+    <button ion-fab color="light" (click)="addNewEvent()">
+      <ion-icon name="add" tappable></ion-icon>
+      </button>
+  </ion-fab>
 </ion-content>

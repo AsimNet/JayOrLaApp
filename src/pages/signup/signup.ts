@@ -3,12 +3,11 @@ import { NavController, ToastController, LoadingController } from 'ionic-angular
 
 import { TranslateService } from 'ng2-translate/ng2-translate';
 import { Network } from 'ionic-native'
-import { TabsPage } from '../tabs/tabs';
 import { User } from '../../providers/user';
 import { Storage } from '@ionic/storage'
 import { Response } from '@angular/http';
 import { Device } from 'ionic-native';
-
+import { HomePage } from '../home/home'
 @Component({
   selector: 'page-signup',
   templateUrl: 'signup.html'
@@ -64,7 +63,7 @@ export class SignupPage {
               console.log("resp status: " + results);
              
               (<any>window).fabric.Answers.sendSignUp("Name",true,results);
-              this.navCtrl.setRoot(TabsPage, {}, {
+              this.navCtrl.setRoot(HomePage, {}, {
                 animate: true,
                 direction: 'forward'
               });

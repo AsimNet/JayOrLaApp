@@ -3,9 +3,9 @@ import { Platform, Nav, Config } from 'ionic-angular';
 import { StatusBar, Splashscreen, Deeplinks } from 'ionic-native';
 
 import { SignupPage } from '../pages/signup/signup';
-import { TabsPage } from '../pages/tabs/tabs';
 import { TutorialPage } from '../pages/tutorial/tutorial';
 import { VotePage } from '../pages/vote/vote';
+import { HomePage } from '../pages/home/home';
 
 import { Storage } from '@ionic/storage';
 
@@ -22,10 +22,7 @@ export class MyApp {
 
   @ViewChild(Nav) nav: Nav;
 
-  pages: any[] = [
-    { title: 'Tutorial', component: TutorialPage },
-    { title: 'Tabs', component: TabsPage }
-  ]
+
 
   constructor(translate: TranslateService,
     private platform: Platform,
@@ -65,7 +62,7 @@ export class MyApp {
           this.rootPage = TutorialPage;
         } else {
           //show him main page
-          this.rootPage = TabsPage;
+          this.rootPage = HomePage;
         }
       });
 
