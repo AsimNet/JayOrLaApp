@@ -27,7 +27,8 @@ export class SettingsPage {
     public platform: Platform,
     public storage: Storage,
     public userAPI: User,
-    public loadingCtrl: LoadingController) {
+    public loadingCtrl: LoadingController,
+    private socialSharing: SocialSharing) {
     this.storage.get(SignupPage.ACCOUNT_KEY).then((userObj) => {
       this.userAccount = userObj;
     })
@@ -96,11 +97,11 @@ export class SettingsPage {
   }
 
   twitterAccount() {
-    SocialSharing.shareViaTwitter("@JayOrLa ");
+    this.socialSharing.shareViaTwitter("@JayOrLa ");
   }
 
   emailSupport() {
-    SocialSharing.shareViaEmail(null, "Support", ["Support@JayOrLa.xyz"], null, ["hlh132132@gmail.com", "sohib6@gmail.com"]);
+    this.socialSharing.shareViaEmail(null, "Support", ["Support@JayOrLa.xyz"], null, ["hlh132132@gmail.com", "sohib6@gmail.com"]);
   }
 
   restorePurchase() {

@@ -3,8 +3,8 @@ import { NavController, NavParams, LoadingController, ToastController, AlertCont
 import { Events } from '../../providers/events'
 import { TranslateService } from 'ng2-translate/ng2-translate';
 import { User } from '../../models/user'
-import { Network } from 'ionic-native/Network'
-import { SocialSharing } from 'ionic-native/SocialSharing'
+import { Network } from '@ionic-native/network';
+import { SocialSharing } from '@ionic-native/social-sharing';
 
 /*
   Generated class for the EventDetails page.
@@ -29,7 +29,9 @@ export class EventDetailsPage {
     public toastCtrl: ToastController,
     public events: Events,
     public translate: TranslateService,
-    public altCtrl: AlertController) {
+    public altCtrl: AlertController,
+    private network: Network,
+    private socialSharing: SocialSharing) {
 
     this.event = navParams.get("event");
   }
@@ -58,8 +60,8 @@ export class EventDetailsPage {
       content: this.translate.instant("GETTING_DETAILS"),
     });
     this.loader.present();
-    console.log(Network.type);
-    if (Network.type !== 'none') {
+    console.log(this.network.type);
+    if (this.network.type !== 'none') {
       this.events.getAllParticipantToEvent(this.event).subscribe((resp) => {
         console.log(resp.text());
         JSON.parse(resp.text()).forEach((userApi) => {
@@ -104,7 +106,7 @@ export class EventDetailsPage {
   }
   shareEvent() {
     let url: string = "https://JayOrLa.xyz/participate/" + this.event.hash;
-    SocialSharing.share(url, 'JayOrLa', null, null);
+    this.socialSharing.share(url, 'JayOrLa', null, null);
 
   }
 }

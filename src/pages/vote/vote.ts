@@ -39,7 +39,8 @@ export class VotePage {
     public app: App,
     public database: Database,
     public storage: Storage,
-    public alertCtrl: AlertController, ) {
+    public alertCtrl: AlertController, 
+    private network: Network) {
     this.hashCode = navParams.get("hashCode");
   }
 
@@ -105,7 +106,7 @@ export class VotePage {
     });
     loader.present();
 
-    if (Network.type !== 'none') {
+    if (this.network.type !== 'none') {
       //get User Object from Storage.
       try {
         this.storage.get(SignupPage.ACCOUNT_KEY).then((userDB) => {

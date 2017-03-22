@@ -32,7 +32,8 @@ export class SignupPage {
     public toastCtrl: ToastController,
     public translateService: TranslateService,
     public storage: Storage,
-    public loadingCtrl: LoadingController) {
+    public loadingCtrl: LoadingController,
+    private network: Network) {
 
     this.translateService.get('LOGIN_ERROR').subscribe((value) => {
       this.loginErrorString = value;
@@ -47,7 +48,7 @@ export class SignupPage {
       });
       loader.present();
 
-      if (Network.type !== 'none') {
+      if (this.network.type !== 'none') {
         let accountJsoned = JSON.stringify(this.account);
         //  console.log(accountJsoned);
         this.user.signup(accountJsoned).subscribe((resp: Response) => {

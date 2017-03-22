@@ -1,6 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { Platform, Nav, Config } from 'ionic-angular';
-import {  Deeplinks } from 'ionic-native';
+import { Deeplinks } from 'ionic-native';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 
@@ -28,7 +28,7 @@ export class MyApp {
 
   constructor(translate: TranslateService,
     private platform: Platform,
-    config: Config,
+    private config: Config,
     public storage: Storage,
     public database: Database,
     private splashScreen: SplashScreen,
@@ -57,7 +57,6 @@ export class MyApp {
 
       this.statusBar.styleDefault();
       this.splashScreen.hide();
-      this.createDB();
 
       this.storage.get(SignupPage.ACCOUNT_KEY).then((user) => {
         console.log("USER REGISTERATION STATUS: " + user);
@@ -81,10 +80,6 @@ export class MyApp {
     this.nav.setRoot(page.component);
   }
 
-  private createDB(): void {
-
-   Database.createDB()
-  }
 
   ngAfterViewInit() {
     this.platform.ready().then(() => {

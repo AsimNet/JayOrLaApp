@@ -42,7 +42,8 @@ export class AddNewEventPage {
     public viewCtrl: ViewController,
     public modalCtrl: ModalController,
     public app: App,
-    public database: Database) {
+    public database: Database,
+    private network: Network) {
     this.translate.get('ADD_EVENT_ERROR').subscribe((value) => {
       this.addEventError = value;
 console.log(this.dateTime)
@@ -70,7 +71,7 @@ console.log(this.dateTime)
         content: this.translate.instant("ADDING_EVENT"),
       });
       loader.present();
-      if (Network.type !== 'none') {
+      if (this.network.type !== 'none') {
 
         this.storage.get(SignupPage.ACCOUNT_KEY).then((user) => {
           console.log(moment(this.dateTime).unix());

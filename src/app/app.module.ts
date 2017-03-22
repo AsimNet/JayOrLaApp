@@ -7,7 +7,8 @@ import { Network } from '@ionic-native/network';
 import { SocialSharing } from '@ionic-native/social-sharing';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { Clipboard } from '@ionic-native/clipboard';
-import { SQLite, SQLiteObject } from '@ionic-native/sqlite';
+import { SQLite } from '@ionic-native/sqlite';
+import { StatusBar } from '@ionic-native/status-bar';
 
 import { MyApp } from './app.component';
 
@@ -66,8 +67,8 @@ export function entryComponents() {
 
 export function providers() {
   return [
+    StatusBar,
     SQLite,
-    SQLiteObject,
     Clipboard,
     SplashScreen,
     SocialSharing,

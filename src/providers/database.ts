@@ -1,25 +1,30 @@
 import { Event } from '../models/event';
 import { SQLite, SQLiteObject } from '@ionic-native/sqlite';
+import { Injectable } from '@angular/core';
 
-
+@Injectable()
 export class Database {
 
-  public static db: SQLiteObject;
 
   public static readonly DB_LOCATION = {
     name: 'data.db',
     location: 'default', // the location field is required
     createFromLocation: 1
   };
+  public static db: SQLiteObject = new SQLiteObject(Database.DB_LOCATION);
 
-  constructor(private sqlite: SQLite) {
+  constructor(public sqlite: SQLite) {
+    console.log("HELLO DB")
     this.sqlite.create(Database.DB_LOCATION).then((db: SQLiteObject) => {
       Database.db = db;
+      this.createDB();
+
     });
   }
   public addToDB(model: Event): Promise<any> {
     return new Promise((resolve, reject) => {
       Database.db.transaction(function (tx) {
+    console.log("HELLO addToDB")
 
         tx.executeSql(`INSERT INTO event (Name, UserId, EndDate, Notes, Hash, CreatedAt, UpdatedAt, EventId) VALUES (?,?,?,?,?,?,?,?)`, [model.getName, model.getUser_id, model.getEndDate, model.getNotes, model.getHash, model.created_at, model.updated_at, model.id], function (tx, results) {
           // console.log("Last event inserted ID: " + Number(model.getEventId));
@@ -75,8 +80,8 @@ export class Database {
 
 
 
-  public static createDB(){
-    // console.log("@create");
+  public createDB(){
+     console.log("@create");
 
       Database.db.transaction(function (tr) {
         tr.executeSql("CREATE TABLE if not exists  Event (`id` INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT ,Name text not null,UserId INTEGER not null,EndDate text not null,Notes text, Hash text not null, CreatedAt text not null, UpdatedAt text not null, EventId number not null)");
