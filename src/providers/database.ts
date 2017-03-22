@@ -11,15 +11,18 @@ export class Database {
     location: 'default', // the location field is required
     createFromLocation: 1
   };
-  public static db: SQLiteObject = new SQLiteObject(Database.DB_LOCATION);
+  public static db: SQLiteObject;
 
   constructor(public sqlite: SQLite) {
     console.log("HELLO DB")
+    if(!Database.db || Database.db == null || Database.db === undefined){
+      //check if Database.db is initilezed or not!
     this.sqlite.create(Database.DB_LOCATION).then((db: SQLiteObject) => {
       Database.db = db;
       this.createDB();
 
     });
+    }
   }
   public addToDB(model: Event): Promise<any> {
     return new Promise((resolve, reject) => {
