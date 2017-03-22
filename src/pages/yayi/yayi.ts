@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, NavParams, ViewController,App } from 'ionic-angular';
 import { Event } from '../../models/event';
 import { TranslateService } from 'ng2-translate/ng2-translate';
-import { Clipboard } from 'ionic-native';
+import { Clipboard } from '@ionic-native/clipboard';
 /*
   Generated class for the Yayi page.
 
@@ -19,6 +19,7 @@ export class YayiPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public viewCtrl: ViewController,
     public translate: TranslateService,
+    private clipboard: Clipboard,
     public app: App) {
     this.event = this.navParams.get("Event")
   }
@@ -27,7 +28,7 @@ export class YayiPage {
     console.log('ionViewDidLoad YayiPage');
   }
   dismiss() {
-    Clipboard.copy("https://JayOrLa.xyz/participate/"+this.event.hash).then(()=>{
+    this.clipboard.copy("https://JayOrLa.xyz/participate/"+this.event.hash).then(()=>{
       this.viewCtrl.dismiss().then(()=>{
     this.app.getRootNav().popToRoot();
 

@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, ToastController, LoadingController } from 'ionic-angular';
 
 import { TranslateService } from 'ng2-translate/ng2-translate';
-import { Network } from 'ionic-native'
+import { Network } from '@ionic-native/network';
 import { User } from '../../providers/user';
 import { Storage } from '@ionic/storage'
 import { Response } from '@angular/http';

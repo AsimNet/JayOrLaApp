@@ -3,7 +3,7 @@ import { NavController, NavParams, ToastController, LoadingController, ViewContr
 import { TranslateService } from 'ng2-translate/ng2-translate';
 import { Events } from '../../providers/events';
 import { Response } from '@angular/http';
-import { Network } from 'ionic-native'
+import { Network } from '@ionic-native/network';
 import { Database } from "../../providers/database";
 import 'moment/locale/ar-SA';
 import { Storage } from '@ionic/storage';

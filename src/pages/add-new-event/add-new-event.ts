@@ -7,7 +7,7 @@ import { Storage } from '@ionic/storage';
 import { SignupPage } from '../signup/signup';
 import { YayiPage } from '../yayi/yayi';
 import { Response } from '@angular/http';
-import { Network } from 'ionic-native'
+import { Network } from '@ionic-native/network';
 import { Database } from "../../providers/database";
 import * as moment from 'moment';
 import 'moment/locale/ar-SA';

@@ -3,7 +3,8 @@ import { NavController, NavParams, LoadingController, ToastController, AlertCont
 import { Events } from '../../providers/events'
 import { TranslateService } from 'ng2-translate/ng2-translate';
 import { User } from '../../models/user'
-import { Network, SocialSharing } from 'ionic-native'
+import { Network } from 'ionic-native/Network'
+import { SocialSharing } from 'ionic-native/SocialSharing'
 
 /*
   Generated class for the EventDetails page.

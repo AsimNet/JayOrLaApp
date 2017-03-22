@@ -5,7 +5,7 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/toPromise';
 import { Event } from '../models/event'
 import { Storage } from '@ionic/storage'
-import { SignupPage } from '../pages/signup/signup'
+
 @Injectable()
 export class Events {
 

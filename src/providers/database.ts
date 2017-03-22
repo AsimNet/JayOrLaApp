@@ -1,10 +1,10 @@
 import { Event } from '../models/event';
-import { SQLite } from 'ionic-native';
+import { SQLite, SQLiteObject } from '@ionic-native/sqlite';
 
 
 export class Database {
 
-  public static db: SQLite = new SQLite();
+  public static db: SQLiteObject;
 
   public static readonly DB_LOCATION = {
     name: 'data.db',
@@ -12,8 +12,10 @@ export class Database {
     createFromLocation: 1
   };
 
-  constructor() {
-
+  constructor(private sqlite: SQLite) {
+    this.sqlite.create(Database.DB_LOCATION).then((db: SQLiteObject) => {
+      Database.db = db;
+    });
   }
   public addToDB(model: Event): Promise<any> {
     return new Promise((resolve, reject) => {
@@ -42,12 +44,10 @@ export class Database {
   public getEvents(): Promise<any> {
     //here pass a eventId and get all event's information and its guardian.
 
-    return Database.db.openDatabase(Database.DB_LOCATION).then(() => {
       return Database.db.executeSql(`SELECT *
       FROM event
       Order by EventId DESC
-`, []);
-    }).then((data) => {
+`, []).then((data) => {
 
       return new Promise<Event[]>((sucess, faild) => {
 
@@ -75,14 +75,9 @@ export class Database {
 
 
 
-  public static create = () => {
+  public static createDB(){
     // console.log("@create");
 
-    Database.db.openDatabase({
-      name: 'data.db',
-      location: 'default', // the location field is required
-      createFromLocation: 1
-    }).then(() => {
       Database.db.transaction(function (tr) {
         tr.executeSql("CREATE TABLE if not exists  Event (`id` INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT ,Name text not null,UserId INTEGER not null,EndDate text not null,Notes text, Hash text not null, CreatedAt text not null, UpdatedAt text not null, EventId number not null)");
       }).then(() => {
@@ -93,7 +88,6 @@ export class Database {
         // console.log(err.message);
       });
 
-    })
   };
 
 
@@ -109,14 +103,12 @@ export class Database {
     // console.log(" id == : " + id);
     // console.log(" event == : " + JSON.stringify(event));
 
-    return Database.db.openDatabase(Database.DB_LOCATION).then(() => {
+
       return Database.db.executeSql(`
             DELETE 
             FROM Event
             WHERE EventId = ? 
-        `, [id])
-
-    }).catch(error => {
+        `, [id]).catch(error => {
       // console.log("error with deleteing event: " + id + error);
 
     })

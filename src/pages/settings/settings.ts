@@ -4,7 +4,7 @@ import { Database } from '../../providers/database';
 import { TranslateService } from 'ng2-translate/ng2-translate';
 import { Storage } from '@ionic/storage';
 import { SignupPage } from '../signup/signup'
-import { SocialSharing } from 'ionic-native'
+import { SocialSharing } from '@ionic-native/social-sharing';
 import { User } from '../../providers/user'
 /*
   Generated class for the Settings page.

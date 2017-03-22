@@ -1,7 +1,13 @@
 import { NgModule, ErrorHandler } from '@angular/core';
 import { Http } from '@angular/http';
 import { IonicApp, IonicModule } from 'ionic-angular';
-import { Storage } from '@ionic/storage';
+import { IonicStorageModule } from '@ionic/storage';
+
+import { Network } from '@ionic-native/network';
+import { SocialSharing } from '@ionic-native/social-sharing';
+import { SplashScreen } from '@ionic-native/splash-screen';
+import { Clipboard } from '@ionic-native/clipboard';
+import { SQLite, SQLiteObject } from '@ionic-native/sqlite';
 
 import { MyApp } from './app.component';
 
@@ -60,7 +66,12 @@ export function entryComponents() {
 
 export function providers() {
   return [
-    Storage,
+    SQLite,
+    SQLiteObject,
+    Clipboard,
+    SplashScreen,
+    SocialSharing,
+    Network,
     Analytics,
     Events,
     User,
@@ -77,6 +88,7 @@ export function providers() {
     IonicModule.forRoot(MyApp,{
       mode: 'md'
     }),
+    IonicStorageModule.forRoot(),
     TranslateModule.forRoot({
       provide: TranslateLoader,
       useFactory: (createTranslateLoader),

@@ -1,6 +1,8 @@
 import { Component, ViewChild } from '@angular/core';
 import { Platform, Nav, Config } from 'ionic-angular';
-import { StatusBar, Splashscreen, Deeplinks } from 'ionic-native';
+import {  Deeplinks } from 'ionic-native';
+import { SplashScreen } from '@ionic-native/splash-screen';
+import { StatusBar } from '@ionic-native/status-bar';
 
 import { SignupPage } from '../pages/signup/signup';
 import { TutorialPage } from '../pages/tutorial/tutorial';
@@ -28,7 +30,9 @@ export class MyApp {
     private platform: Platform,
     config: Config,
     public storage: Storage,
-    public database: Database) {
+    public database: Database,
+    private splashScreen: SplashScreen,
+    private statusBar: StatusBar) {
 
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
@@ -51,8 +55,8 @@ export class MyApp {
         config.set('ios', 'backButtonText', values.BACK_BUTTON_TEXT);
       });
 
-      StatusBar.styleDefault();
-      Splashscreen.hide();
+      this.statusBar.styleDefault();
+      this.splashScreen.hide();
       this.createDB();
 
       this.storage.get(SignupPage.ACCOUNT_KEY).then((user) => {
@@ -79,10 +83,7 @@ export class MyApp {
 
   private createDB(): void {
 
-    Database.db.openDatabase(Database.DB_LOCATION).then(Database.create)
-      .catch((err) => {
-        console.error('Unable to crate database @MyApp.createDb: ', err);
-      });
+   Database.createDB()
   }
 
   ngAfterViewInit() {
