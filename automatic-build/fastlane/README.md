@@ -28,24 +28,16 @@ xcode-select --install
 </tr>
 </table>
 # Available Actions
-## iOS
-### ios test
+### JayOrLa
 ```
-fastlane ios test
+fastlane JayOrLa
 ```
-Runs all the tests
-### ios beta
+
+### beta
 ```
-fastlane ios beta
+fastlane beta
 ```
 Submit a new Beta Build to Apple TestFlight
-
-This will also make sure the profile is up to date
-### ios release
-```
-fastlane ios release
-```
-Deploy a new version to the App Store
 
 ----
 

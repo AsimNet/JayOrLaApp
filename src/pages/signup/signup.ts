@@ -6,7 +6,7 @@ import { Network } from '@ionic-native/network';
 import { User } from '../../providers/user';
 import { Storage } from '@ionic/storage'
 import { Response } from '@angular/http';
-import { Device } from 'ionic-native';
+import { Device } from '@ionic-native/device';
 import { HomePage } from '../home/home'
 @Component({
   selector: 'page-signup',
@@ -33,7 +33,8 @@ export class SignupPage {
     public translateService: TranslateService,
     public storage: Storage,
     public loadingCtrl: LoadingController,
-    private network: Network) {
+    private network: Network,
+    private device: Device) {
 
     this.translateService.get('LOGIN_ERROR').subscribe((value) => {
       this.loginErrorString = value;
@@ -55,7 +56,7 @@ export class SignupPage {
 
           let results = resp.json();
           //getting uuid and assign it with user Object.
-          results.uuid = Device.uuid;
+          results.uuid = this.device.uuid;
 
           if (resp.status == 200) {
             loader.dismiss();

@@ -9,6 +9,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { Clipboard } from '@ionic-native/clipboard';
 import { SQLite } from '@ionic-native/sqlite';
 import { StatusBar } from '@ionic-native/status-bar';
+import { Device } from '@ionic-native/device';
 
 import { MyApp } from './app.component';
 
@@ -67,6 +68,7 @@ export function entryComponents() {
 
 export function providers() {
   return [
+    Device,
     StatusBar,
     SQLite,
     Clipboard,

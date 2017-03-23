@@ -1,0 +1,87 @@
+
+# This is the minimum version number required.
+# Update this, if you use features of a newer version
+fastlane_version "2.22.0"
+require 'xcodeproj'
+ 
+default_platform :ios
+ 
+platform :ios do
+ 
+# Put in Lanes here!
+ 
+end
+  lane :JayOrLa do
+    produce(
+        username: 'hlh132132@gmail.com', # Your iTunes ID
+        app_identifier: 'com.JayOrLa', # Your App Bundle ID
+        app_name: 'JayOrLa', # Your App Name
+        language: 'English',
+        app_version: '0.8',
+        sku: '7000',
+        team_name: 'Jay team' # only necessary when in multiple teams
+      )
+ 
+  end
+
+  desc "Submit a new Beta Build to Apple TestFlight"
+  lane :beta do    
+
+# Ensure that your git status is not dirty
+  ensure_git_status_clean
+
+  # Increment the build number (not the version number)
+  # Providing the xcodeproj is optional
+  increment_build_number(xcodeproj: "JayOrLa.xcodeproj")
+
+  # Commit the version bump
+  commit_version_bump(xcodeproj: "JayOrLa.xcodeproj")
+
+  # Add a git tag for this build. This will automatically
+  # use an appropriate git tag name
+  add_git_tag
+
+  # Push the new commit and tag back to your git remote
+  push_to_git_remote
+
+    # Fetch and Create Profiles
+    match
+ 
+    # Retrieve App Name and ID from environment
+    name = ENV['CUSTOM_APP_NAME']
+    app_id = ENV['CUSTOM_APP_ID']
+    team_id = ENV['CUSTOM_TEAM_ID']
+ 
+    xcodeprojpath = "../platforms/ios/" + name + ".xcodeproj"
+ 
+    # Update Code Signing
+    update_project_codesigning(path: xcodeprojpath, use_automatic_signing: false, team_id: team_id)
+ 
+    # Patch Project Settings
+    proj = Xcodeproj::Project.open("../" + xcodeprojpath)
+    
+    proj.build_configurations.each do |item|
+        item.build_settings['DEVELOPMENT_TEAM'] = team_id
+        item.build_settings['CODE_SIGN_IDENTITY[sdk=iphoneos*]'] = "iPhone Developer"
+        item.build_settings['PROVISIONING_PROFILE_SPECIFIER'] = "match AppStore " + app_id
+    end
+ 
+    proj.recreate_user_schemes
+    proj.save
+    # End of Patching Project Settings
+ 
+    increment_build_number({
+      build_number: latest_testflight_build_number + 1,
+      xcodeproj: xcodeprojpath
+    })
+    
+    # Build the IPA
+    gym
+ 
+    # Upload the IPA to Testflight
+    testflight(
+       skip_waiting_for_build_processing: true, 
+       ipa: "./build/JayOrLa.ipa"
+    )
+ 
+  end

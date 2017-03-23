@@ -21,6 +21,7 @@
     "@angular/platform-server": "2.4.8",
     "@ionic-native/clipboard": "^3.1.1",
     "@ionic-native/core": "^3.1.1",
+    "@ionic-native/device": "^3.1.1",
     "@ionic-native/network": "^3.1.1",
     "@ionic-native/social-sharing": "^3.1.1",
     "@ionic-native/splash-screen": "^3.1.1",
