@@ -30,10 +30,6 @@ end
 # Ensure that your git status is not dirty
   ensure_git_status_clean
 
-
-  # Commit the version bump
-  commit_version_bump(xcodeproj: "../platforms/ios/" +"JayOrLa.xcodeproj")
-
   # Add a git tag for this build. This will automatically
   # use an appropriate git tag name
   add_git_tag
