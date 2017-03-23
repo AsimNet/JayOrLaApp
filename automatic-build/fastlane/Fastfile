@@ -63,10 +63,6 @@ end
     proj.save
     # End of Patching Project Settings
  
-    increment_build_number({
-      build_number: latest_testflight_build_number + 1,
-      xcodeproj: xcodeprojpath
-    })
     
     # Build the IPA
     gym
