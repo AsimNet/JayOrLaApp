@@ -1,7 +1,14 @@
 page-add-new-event {
 .datetime-text:empty:not(:focus):before{
 	content: '###';
-    color: #999;
+    color: white;
+}
+.datetime-text{
+        color: white;
+}
+content{
+    background: color($colors, background);
+
 }
 img{
         display: block;
@@ -10,4 +17,7 @@ img{
         margin-left: auto;
         margin-right: auto;
          }
+.item-block .item,.div,div.item-content,.item .item-block, ion-item {
+    background-color: color($colors, background) !important;
+}
 }

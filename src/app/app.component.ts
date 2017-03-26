@@ -1,6 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { Platform, Nav, Config } from 'ionic-angular';
-import { Deeplinks } from 'ionic-native';
+import { Deeplinks } from '@ionic-native/deeplinks';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 
@@ -32,7 +32,8 @@ export class MyApp {
     public storage: Storage,
     public database: Database,
     private splashScreen: SplashScreen,
-    private statusBar: StatusBar) {
+    private statusBar: StatusBar,
+    private deeplinks: Deeplinks) {
 
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
@@ -84,7 +85,7 @@ export class MyApp {
   ngAfterViewInit() {
     this.platform.ready().then(() => {
       // Convenience to route with a given nav
-      Deeplinks.routeWithNavController(this.nav, {
+      this.deeplinks.routeWithNavController(this.nav, {
         '/participate/:hashCode': VotePage
       }).subscribe((match) => {
         console.log('Successfully routed', match);

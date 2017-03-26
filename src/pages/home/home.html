@@ -11,7 +11,10 @@
 
 <ion-content no-bounce>
   <div *ngIf="eventsList.length == 0" class="NoContent">
-    <img src="https://api.adorable.io/avatars/1000/anga.png">
+    <img src="assets/img/noEvents.png">
+    <div>
+      <h1 class="noEventsText">{{'NO_EVENTS' | translate}}</h1>
+    </div>
   </div>
   <ion-list no-lines>
     <ion-item-sliding *ngFor="let event of eventsList">

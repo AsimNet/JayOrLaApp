@@ -1,15 +1,21 @@
 page-home {
 .NoContent{
- position: absolute; 
- height: 100%; 
- width: 100%;
+ display:block;
+overflow:auto;
+
 
 }
 .NoContent img { 
+display: block;
+    margin: auto;
 
-position: absolute;
-height: 100%;
- bottom: 0; 
- right: 0;
+ }
+
+ .NoContent div .noEventsText{
+text-align: center;
+margin-left: auto;
+margin-right: auto;
+
+
  }
 }

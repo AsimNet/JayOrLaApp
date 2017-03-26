@@ -19,7 +19,7 @@
       {{'PROFILE'| translate}}
     </ion-list-header>
       
-      <button  ion-item detail-none (click)="changeUserName()">
+      <button  ion-item detail-none no-lines (click)="changeUserName()">
       <ion-icon name="person" item-left></ion-icon>
       {{userAccount.name}}
       <ion-icon name="md-create" item-right></ion-icon>
@@ -28,19 +28,19 @@
     <ion-list-header>
       {{'PREMIUM'| translate}}
     </ion-list-header>
-    <button ion-item detail-none>
+    <button ion-item detail-none no-lines>
       <ion-icon name="cash" item-left></ion-icon>
       Invite till 100 users
       <h6 item-right>$2</h6>
     </button>
 
-    <button ion-item detail-none>
+    <button ion-item detail-none no-lines>
       <ion-icon name="cash" item-left></ion-icon>
       Invite till 200 users
       <h6 item-right>$3</h6>
     </button>
 
-    <button ion-item detail-none>
+    <button ion-item detail-none no-lines>
       <ion-icon name="cash" item-left></ion-icon>
       Invite unlimited users
       <h6 item-right>$5</h6>
@@ -50,17 +50,17 @@
       {{'SUPPORT' | translate}}
     </ion-list-header>
 
-    <button ion-item detail-none (click)="twitterAccount()">
+    <button ion-item detail-none no-lines (click)="twitterAccount()">
       <ion-icon name="logo-twitter" item-left></ion-icon>
       @JayOrLa
       </button>
 
-    <button ion-item detail-none (click)="emailSupport()">
+    <button ion-item detail-none no-lines (click)="emailSupport()">
      <ion-icon name="mail" item-left ></ion-icon>
       Support@JayOrLa.xyz
     </button>
 
-    <button ion-item detail-none (click)="restorePurchase()">
+    <button ion-item detail-none no-lines (click)="restorePurchase()">
           <ion-icon name="sync" item-left></ion-icon>
       {{'RESTORE_PURCHASE'}}
       </button>

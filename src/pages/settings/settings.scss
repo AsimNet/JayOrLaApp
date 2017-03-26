@@ -10,4 +10,8 @@ ion-list-header{
 .scroll-content {
         overflow: hidden !important;
     }
+    .item-block .item,.div,div.item-content,.item .item-block, ion-item {
+    background-color: color($colors, primary) !important;
+}
+
 }

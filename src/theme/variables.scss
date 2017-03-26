@@ -24,12 +24,11 @@ $font-path: "../assets/fonts";
 // The "primary" color is the only required color in the map.
 
 $colors: (
-  primary:    #32db64,
-  secondary:  #ff8f00,
+  primary:    #3f51b5,
+  background: #9fa8da,
+  secondary:  #1a237e,
   danger:     red,
-  light:      #0392cf,
-  notes:      #999,
-
+  light:      #3f51b5
 );
 
 
@@ -63,7 +62,58 @@ $colors: (
 
 @import "ionic.theme.default";
 
+$background-color: color($colors, background);
+// .item, .item-block{
+// background-color: color($colors, primary);
+// background: color($colors, primary);
 
+// }
+.content{
+  background:  color($colors, primary);
+}
+ion-list .item .item-inner .input-wrapper ion-label{ 
+color: color($colors, secondary);
+}
+ion-list .item{
+background: color($colors, background);
+border-color: color($colors, primary);
+}
+
+h1 , h2 , h3, h4 , h5, h6 , p {
+  color: color($colors, secondary) !important;
+}
+
+.list .item-input.ng-valid.input-has-value:last-child {
+  border-bottom-color: transparent;
+}
+.item-input ion-input, .item-input ion-textarea{
+  color: white;
+}
+
+.text-input::-moz-placeholder {
+  color: whitesmoke !important;
+}
+
+.text-input:-ms-input-placeholder {
+  color: whitesmoke !important;
+}
+
+.text-input::-webkit-input-placeholder {
+  text-indent: 0;
+  color: whitesmoke !important;
+}
+
+/// @prop - Show the focus highlight when the input has focus
+$text-input-ios-show-focus-highlight:      false !default;
+
+/// @prop - Show the valid highlight when it is valid and has a value
+$text-input-ios-show-valid-highlight:      $text-input-ios-show-focus-highlight !default;
+
+/// @prop - Show the invalid highlight when it is invalid and has value
+$text-input-ios-show-invalid-highlight:    $text-input-ios-show-focus-highlight !default;
+$text-input-md-show-focus-highlight: false !default;
+$text-input-md-show-valid-highlight: $text-input-md-show-focus-highlight !default;
+$text-input-md-show-invalid-highlight: $text-input-md-show-focus-highlight !default;
 // Ionicons
 // --------------------------------------------------
 // The premium icon font for Ionic. For more info, please see:

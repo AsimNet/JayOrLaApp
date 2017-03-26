@@ -19,11 +19,11 @@
 
 
 <ion-content no-bounce>
-  <img src="assets/img/ica-slidebox-img-3.png">
+  <img src="assets/img/ica-slidebox-img-1.png">
   <ion-list no-lines>
     <form (ng-submit)="AddNewEvent()">
       <ion-item>
-        <ion-label floating>*{{'EVENTS_NAME'| translate}}</ion-label>
+        <ion-label>*{{'EVENTS_NAME'| translate}}</ion-label>
         <ion-input type="text" name="title" [(ngModel)]="title" required></ion-input>
       </ion-item>
       <ion-item>
@@ -38,7 +38,7 @@
     <h6  ion-text color="notes">{{'NOTICE_ADD_EVENT' | translate}}:<span text-wrap ion-text color="danger"> {{dateTimeString.format("llll")}}</span></h6>
       </ion-item>
       <ion-item>
-        <ion-label floating>{{'NOTES'| translate}}</ion-label>
+        <ion-label >{{'NOTES'| translate}}</ion-label>
         <ion-textarea rows="10" [(ngModel)]="notes" name="notes"></ion-textarea>
       </ion-item>
     </form>

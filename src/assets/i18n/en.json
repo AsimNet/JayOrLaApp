@@ -23,7 +23,7 @@
   "TUTORIAL_SKIP_BUTTON" : "Skip",
   "TUTORIAL_CONTINUE_BUTTON" : "I'm ready",
 
-  "TUTORIAL_SLIDE1_TITLE": "Welcome to the Jay Or La App",
+  "TUTORIAL_SLIDE1_TITLE": "Welcome to Jay Or La App",
   "TUTORIAL_SLIDE1_DESCRIPTION": "The <b>Jay Or La App</b> is an attender app, which will make you organize your events easily",
 
   "TUTORIAL_SLIDE2_TITLE": "How to use the JayOrLa",
@@ -90,7 +90,10 @@
   "PREMIUM": "PREMIUM",
   "SUPPORT": "SUPPORT",
   "RESTORE_PURCHASE": "RESTORE PURCHASE",
-  "WAIT": "Wait.."
+  "WAIT": "Wait..",
+
+    "NO_EVENTS": "You didn't add any event yet :("
+
 
 
 }
