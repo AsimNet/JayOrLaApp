@@ -15,12 +15,13 @@ import { TranslateService } from 'ng2-translate/ng2-translate';
 import { Database } from "../providers/database";
 
 @Component({
-  template: `<ion-nav #content [root]="rootPage" dir="{{dir}}"></ion-nav>`
+  template: `<ion-nav #content [root]="rootPage" dir="{{dirr}}"></ion-nav>`
 })
 export class MyApp {
   rootPage;
   public static usersLanguage;
-  public dir: string;
+  public static dir: string;
+  public dirr: string;
 
   @ViewChild(Nav) nav: Nav;
 
@@ -41,10 +42,12 @@ export class MyApp {
       let browserLang = translate.getBrowserLang();
 
       if (browserLang === 'ar') {
-        this.dir = "rtl";
-
+        MyApp.dir = "rtl";
+        this.dirr = "rtl";
       } else {
-        this.dir = "ltr";
+        MyApp.dir = "ltr";
+        this.dirr = "ltr";
+
       }
 
       // Set the default language for translation strings, and the current language.
