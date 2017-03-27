@@ -10,6 +10,7 @@ import { Clipboard } from '@ionic-native/clipboard';
 import { SQLite } from '@ionic-native/sqlite';
 import { StatusBar } from '@ionic-native/status-bar';
 import { Device } from '@ionic-native/device';
+import { Deeplinks } from '@ionic-native/deeplinks';
 
 import { MyApp } from './app.component';
 
@@ -68,6 +69,7 @@ export function entryComponents() {
 
 export function providers() {
   return [
+    Deeplinks,
     Device,
     StatusBar,
     SQLite,
