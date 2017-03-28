@@ -1,5 +1,5 @@
 import {Injectable} from "@angular/core";
-import {Analytics} from "./analytics";
+import {Analytics} from "./Analytics";
 import {IonicErrorHandler } from 'ionic-angular';
 import * as stacktrace from 'stacktrace-js';
 

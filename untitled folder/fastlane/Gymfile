@@ -1,4 +1,0 @@
-scheme "JayOrLa" # Scheme of your native app, just the Name from config.xml
-project "/Users/asimaltwijry/JayOrLaApp/platforms/ios/JayOrLa.xcodeproj" # Should be the path to the iOS project
-output_directory "./build" # Where the app will be build to
-output_name "JayOrLa" # Final output for the IPA

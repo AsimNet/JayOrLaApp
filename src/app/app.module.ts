@@ -23,7 +23,7 @@ import { EventDetailsPage } from '../pages/event-details/event-details';
 import { VotePage } from '../pages/vote/vote';
 import { SettingsPage } from '../pages/settings/settings';
 
-import {Analytics} from "../providers/analytics";
+import {Analytics} from "../providers/Analytics";
 import { FabricErrorHandler } from '../providers/FabricErrorHandler'
 import { User } from '../providers/user';
 import { Api } from '../providers/api';

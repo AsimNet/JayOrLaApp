@@ -20,7 +20,7 @@
     "@angular/platform-browser-dynamic": "2.4.8",
     "@angular/platform-server": "2.4.8",
     "@ionic-native/clipboard": "^3.1.1",
-    "@ionic-native/core": "^3.2.4",
+    "@ionic-native/core": "^3.1.1",
     "@ionic-native/deeplinks": "^3.2.4",
     "@ionic-native/device": "^3.1.1",
     "@ionic-native/network": "^3.1.1",
@@ -43,10 +43,10 @@
     "zone.js": "0.7.2"
   },
   "devDependencies": {
-    "@ionic/app-scripts": "1.1.4",
+    "@ionic/app-scripts": "1.2.2",
     "@ionic/cli-build-ionic-angular": "0.0.3",
     "@ionic/cli-plugin-cordova": "0.0.9",
-    "typescript": "2.0.9"
+    "typescript": "2.2.1"
   },
   "cordovaPlugins": [
     "cordova-plugin-whitelist",
